@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,18 +12,36 @@ public class EnemyAI : MonoBehaviour
     {
         Idle,
         Roaming,
-        Attack
+        Attack,
+        GetHit
+
     }
     private string RAT_RUNNING = "Rat_Run";
     private string RAT_IDLE = "Rat_Idle";
     private string RAT_ATTACK = "Rat_Attack";
+    private string RAT_GET_HIT = "Rat_GetHit";
+
     private Vector3 startedPos;
     private Vector3 targetPosition;
     private Vector3 randDir;
+    private Collider2D enemyColider;
 
 
     private EnemyState currentState;
+    private bool _isInvincible = false;
+    private bool isInvincible
+    {
+        get => _isInvincible; set
+        {
+            _isInvincible = value;
+            enemyColider.enabled = !value;
+
+        }
+    }
+
+
     private EnemyMovement enemyMovement;
+
     private EnemyState CurrentState
     {
         get => currentState;
@@ -41,6 +60,7 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         enemyMovement = GetComponent<EnemyMovement>();
+        enemyColider = GetComponent<Collider2D>();
     }
     private void Start()
     {
@@ -54,14 +74,19 @@ public class EnemyAI : MonoBehaviour
         switch (currentState)
         {
             case EnemyState.Idle:
-                animator.Play(RAT_RUNNING);
+                animator.CrossFade(RAT_IDLE, 0, 0);
 
                 break;
             case EnemyState.Roaming:
                 InitRandRoaming();
-                animator.Play(RAT_RUNNING);
+                animator.CrossFade(RAT_RUNNING, 0, 0);
                 break;
             case EnemyState.Attack:
+                break;
+            case EnemyState.GetHit:
+                animator.CrossFade(RAT_GET_HIT, 0, 0);
+                break;
+            default:
                 break;
         }
     }
@@ -104,10 +129,24 @@ public class EnemyAI : MonoBehaviour
     {
         return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0).normalized;
     }
+    public void onGettingHit()
+    {
+        CurrentState = EnemyState.GetHit;
+        this.isInvincible = true;
+        StartCoroutine(onFinishGetingHit(animator.GetCurrentAnimatorStateInfo(0).length));
+
+    }
+    IEnumerator onFinishGetingHit(float timeAnimationPlay)
+    {
+        yield return new WaitForSeconds(timeAnimationPlay);
+
+        CurrentState = EnemyState.Roaming;
+        this.isInvincible = false;
+    }
     private void OnDrawGizmos()
     {
 
-        if (!GameManager.Instance.DEBUG) return;
+        // if (!GameManager.Instance.DEBUG) return;
         Gizmos.color = Color.red;
         Gizmos.DrawLine(startedPos, targetPosition);
         Gizmos.DrawLine(transform.position, startedPos);
