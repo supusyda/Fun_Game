@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DamageReciver : MonoBehaviour
@@ -44,9 +45,14 @@ public class DamageReciver : MonoBehaviour
         rigidbody2D = transform.parent.GetComponent<Rigidbody2D>();
         collider2D = transform.parent.GetComponent<Collider2D>();
     }
-    protected virtual void KnockBack(Vector2 knockbackVecter)
+    protected virtual async void KnockBack(Vector2 knockbackVecter)
     {
-        rigidbody2D.velocity = new Vector2(knockbackVecter.x, rigidbody2D.velocity.y + knockbackVecter.y);
+        // rigidbody2D.velocity = new Vector2(knockbackVecter.x, knockbackVecter.y);
+
+
+        rigidbody2D.AddForce(knockbackVecter, ForceMode2D.Impulse);
+        await Task.Delay(1000);//reset velocity after 1sec
+        rigidbody2D.velocity = Vector2.zero;
     }
     public virtual void TakeDamage(float damage, Vector2 knockbackVecter)
     {
@@ -57,6 +63,7 @@ public class DamageReciver : MonoBehaviour
         // this.animator.SetTrigger("getHit");
 
     }
+  
 
     protected virtual void DeduceHp(float reduceHP)
     {

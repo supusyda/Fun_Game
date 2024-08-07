@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _isFlip = value;
             isInFlipAnim = true;
+            PlayerCtr.PlayerAttack.flipAttackColider();
             if (value == false)
             {
                 model.DORotate(new Vector3(0, 0, 0), 0.3f).OnComplete(() =>

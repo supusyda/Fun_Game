@@ -25,7 +25,10 @@ public class PlayerAttack : MonoBehaviour
     {
         attack1Colider.enabled = false;
     }
-
+    public void flipAttackColider()
+    {
+        this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+    }
     void Attack()
     {
         PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Attack);  //    animator

@@ -7,7 +7,7 @@ public class DamageDealer : MonoBehaviour
 {
 
     public float damage = 1;
-    public float knockBackForce = 0.01f;
+    public float knockBackForce = 1000f;
     private DamageReciver targetHit;
 
 
@@ -28,12 +28,10 @@ public class DamageDealer : MonoBehaviour
         {
             // CharacterEvent.dealDamage
             targetHit = enemy;
-
-
-            Vector2 knockBackDir = (enemy.gameObject.transform.position - transform.position).normalized;
-            knockBackDir = knockBackDir * this.knockBackForce;
-
-            targetHit.TakeDamage(damage, knockBackDir);
+            knockBackForce = 1f;
+            Vector2 knockBackDir = (enemy.transform.position - transform.position).normalized;
+            knockBackDir = knockBackDir * knockBackForce;
+                      targetHit.TakeDamage(damage, knockBackDir);
 
         }
     }
