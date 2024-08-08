@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -52,6 +53,7 @@ public class DamageReciver : MonoBehaviour
 
         rigidbody2D.AddForce(knockbackVecter, ForceMode2D.Impulse);
         await Task.Delay(1000);//reset velocity after 1sec
+        if (!rigidbody2D) return;
         rigidbody2D.velocity = Vector2.zero;
     }
     public virtual void TakeDamage(float damage, Vector2 knockbackVecter)
@@ -60,7 +62,7 @@ public class DamageReciver : MonoBehaviour
         this.KnockBack(knockbackVecter);
         this.DeduceHp(damage);
         this.hitAnim();
-        // this.animator.SetTrigger("getHit");
+        
 
     }
   
@@ -71,10 +73,15 @@ public class DamageReciver : MonoBehaviour
         if (isAlive)
         {
             this.Hp = this.Hp - reduceHP;
+            if(this.Hp <= 0) Die();
 
         }
     }
     protected virtual void hitAnim()
+    {
+
+    }
+     protected virtual void Die(Action<string> callback=null)
     {
 
     }

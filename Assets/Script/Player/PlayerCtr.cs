@@ -59,6 +59,7 @@ public class PlayerCtr : MonoBehaviour
 
             case PlayerState.Idle:
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION)) return;
+                if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
                 newAnimateState = PlayerDefine.Player_Idle;
                 break;
             case PlayerState.Moving:
@@ -67,6 +68,11 @@ public class PlayerCtr : MonoBehaviour
                 newAnimateState = PlayerDefine.Player_running;
                 break;
             case PlayerState.Attack:
+                if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION))
+                {
+                    newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION_2;
+                    break;
+                }
                 newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION;
                 break;
         }

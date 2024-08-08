@@ -13,8 +13,8 @@ public class EnemyAI : MonoBehaviour
         Idle,
         Roaming,
         Attack,
-        GetHit
-
+        GetHit,
+        Die
     }
     private string RAT_RUNNING = "Rat_Run";
     private string RAT_IDLE = "Rat_Idle";
@@ -86,12 +86,17 @@ public class EnemyAI : MonoBehaviour
             case EnemyState.GetHit:
                 animator.CrossFade(RAT_GET_HIT, 0, 0);
                 break;
+            case EnemyState.Die:
+
+                break;
             default:
                 break;
         }
     }
     private void FixedUpdate()
     {
+        if (CurrentState == EnemyState.Die) return;
+
         if (CurrentState == EnemyState.Roaming)
         {
             Roaming();
@@ -101,7 +106,6 @@ public class EnemyAI : MonoBehaviour
     }
     private void Roaming()
     {
-
         enemyMovement.MoveToDir(randDir);
         if (Vector3.Distance(transform.position, targetPosition) <= 1f || Vector3.Distance(transform.position, startedPos) >= maxRoamingRange)
         {
@@ -153,6 +157,11 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawLine(startedPos, (transform.position - startedPos).normalized * maxRoamingRange);
 
 
+    }
+    public void SetStateToDie()
+    {
+        currentState = EnemyState.Die;
+        transform.GetComponent<Collider2D>().enabled = false;
     }
 
 }

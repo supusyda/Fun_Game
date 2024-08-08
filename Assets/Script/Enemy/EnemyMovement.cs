@@ -24,4 +24,8 @@ public class EnemyMovement : MonoBehaviour
         if (dir == Vector3.zero) return;
         rigidbody2D.MovePosition(transform.position + dir * (Time.deltaTime * speed));
     }
+    public void StopMoving()
+    {
+        rigidbody2D.velocity = Vector3.zero;
+    }
 }
