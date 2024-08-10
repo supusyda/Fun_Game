@@ -15,13 +15,16 @@ public class PlayerCtr : MonoBehaviour
     public static PlayerInput PlayerInput { get => playerInput; }
     private static PlayerAttack playerAttack;
     public static PlayerAttack PlayerAttack { get => playerAttack; }
-
     private static Animator playerAnimator;
     public static Animator PlayerAnimator { get => playerAnimator; }
-
-
     private static PlayerState _currentState = PlayerState.Idle;
     public static PlayerState CurrentState { get => _currentState; }
+    private static Rigidbody2D rb2D;
+
+    public static Rigidbody2D Rb2D { get => rb2D; }
+    private static Transform trail;
+
+    public static Transform Trail { get => trail; }
     public enum PlayerState
     {
         Idle,
@@ -31,10 +34,11 @@ public class PlayerCtr : MonoBehaviour
     private void Awake()
     {
         playerInput = new PlayerInput();
-
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimator = transform.Find("Model").GetComponent<Animator>();
         playerAttack = transform.Find("Attack").GetComponent<PlayerAttack>();
+        rb2D = GetComponent<Rigidbody2D>();
+        trail = transform.Find("Trail");
     }
     private void OnEnable()
     {
@@ -64,27 +68,35 @@ public class PlayerCtr : MonoBehaviour
                 break;
             case PlayerState.Moving:
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION)) return;
+                if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
+
 
                 newAnimateState = PlayerDefine.Player_running;
                 break;
             case PlayerState.Attack:
-                if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION))
-                {
-                    newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION_2;
-                    break;
-                }
-                newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION;
+
+                if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
+                playerAttack.ComboAttack();
+
                 break;
+
+                // if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION))
+                // {
+                //     newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION_2;
+                //     break;
+                // }
+                // newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION;
+                // break;
         }
 
 
         if (newAnimateState == "") return;
-        PlayerAnimator.Play(newAnimateState);
         _currentState = newState;
-    }
-    public void SetState()
-    {
 
+        if (_currentState == PlayerState.Attack) return;
+        PlayerAnimator.Play(newAnimateState);
     }
+
+
 
 }

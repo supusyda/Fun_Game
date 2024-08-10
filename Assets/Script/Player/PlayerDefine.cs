@@ -6,6 +6,10 @@ public static class PlayerDefine
 
     public static string Player_Idle = "Player_Idle";
     public static string Player_running = "Player_running";
+    public static float player_dash_speed = 5;
+    public static float player_dash_cool_down = 1;
+
+
 
 
 }

@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] Collider2D attack1Colider;
     [SerializeField] float attackCoolDownTimer = 0;//count to zero
     [SerializeField] float maxAttackCoolDown = 1;
+    private bool _isComboAttack = false;
 
 
     private void Start()
@@ -20,9 +21,10 @@ public class PlayerAttack : MonoBehaviour
         this.attackCoolDownTimer = maxAttackCoolDown;
 
     }
-    private void Update() {
+    private void Update()
+    {
         if (attackCoolDownTimer >= maxAttackCoolDown) return;
-         attackCoolDownTimer += Time.deltaTime;
+        attackCoolDownTimer += Time.deltaTime;
     }
     private void OnStartSwing()
     {
@@ -37,10 +39,39 @@ public class PlayerAttack : MonoBehaviour
         this.transform.localScale = new Vector3(-this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
     }
     void Attack()
-    {   if (attackCoolDownTimer < maxAttackCoolDown) return;
+    {
+        if (attackCoolDownTimer < maxAttackCoolDown)
+        {
+            
+            _isComboAttack = true;
+            return;
+        };
         attackCoolDownTimer = 0;
+        _isComboAttack = false;
         PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Attack);  //    animator
 
+    }
+    IEnumerator nextComboAttack(float timeAnimationPlay)
+    {
+        // PlayerAnimator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(timeAnimationPlay);
+        if (checkIsCanDoComboAttack()) PlayerCtr.PlayerAnimator.Play(PlayerDefine.PLAYER_ATTACK_ANIMATION_2);
+
+    }
+    public void ComboAttack()
+    {
+
+        // PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Attack);
+        PlayerCtr.PlayerAnimator.Play(PlayerDefine.PLAYER_ATTACK_ANIMATION);
+
+        StartCoroutine(nextComboAttack(PlayerCtr.PlayerAnimator.GetCurrentAnimatorStateInfo(0).length));
+
+    }
+    bool checkIsCanDoComboAttack()
+    {
+
+        Debug.Log("_isComboAttack" + _isComboAttack);
+        return _isComboAttack == true;
     }
 
 }

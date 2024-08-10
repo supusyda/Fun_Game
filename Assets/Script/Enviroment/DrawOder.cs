@@ -28,17 +28,19 @@ public class DrawOder : MonoBehaviour
     {
         if (transform.parent.position.y > ojbInRange.position.y)
         {
-            ChangeOderLayer(thisObjectSprite.sortingOrder +1, ojbInRange);
+            ChangeOderLayer(thisObjectSprite.sortingOrder + 1, ojbInRange);
             return;
         }
 
-        ChangeOderLayer(thisObjectSprite.sortingOrder -1, ojbInRange);
+        ChangeOderLayer(thisObjectSprite.sortingOrder - 1, ojbInRange);
 
 
     }
     void ChangeOderLayer(int newOderInLayer, Transform ojbInRange)
     {
+        Debug.Log(ojbInRange.name);
         currentOderInLayer = newOderInLayer;
+        if (!ojbInRange.Find("Model")) return;
         ojbInRange.Find("Model").GetComponent<SpriteRenderer>().sortingOrder = currentOderInLayer;
 
 
@@ -46,7 +48,7 @@ public class DrawOder : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        // if (!other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player")) return;
         ChangeOderToPlayerOder(other.transform);
     }
 }
