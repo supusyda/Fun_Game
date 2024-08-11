@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (attackCoolDownTimer < maxAttackCoolDown)
         {
-            
+
             _isComboAttack = true;
             return;
         };
@@ -70,7 +70,7 @@ public class PlayerAttack : MonoBehaviour
     bool checkIsCanDoComboAttack()
     {
 
-        Debug.Log("_isComboAttack" + _isComboAttack);
+
         return _isComboAttack == true;
     }
 

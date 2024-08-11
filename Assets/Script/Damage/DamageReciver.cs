@@ -10,7 +10,8 @@ public class DamageReciver : MonoBehaviour
 
     Rigidbody2D rigidbody2D;
     Collider2D collider2D;
-    [SerializeField] protected float hp;
+     [SerializeField] HeathBar healthBar;
+    [SerializeField] public float hp;
     protected float Hp
     {
         set
@@ -62,10 +63,10 @@ public class DamageReciver : MonoBehaviour
         this.KnockBack(knockbackVecter);
         this.DeduceHp(damage);
         this.hitAnim();
-        
+
 
     }
-  
+
 
     protected virtual void DeduceHp(float reduceHP)
     {
@@ -73,7 +74,8 @@ public class DamageReciver : MonoBehaviour
         if (isAlive)
         {
             this.Hp = this.Hp - reduceHP;
-            if(this.Hp <= 0) Die();
+            healthBar?.SetHealth((int)Hp);
+            if (this.Hp <= 0) Die();
 
         }
     }
@@ -81,8 +83,8 @@ public class DamageReciver : MonoBehaviour
     {
 
     }
-     protected virtual void Die(Action<string> callback=null)
+    protected virtual void Die(Action<string> callback = null)
     {
-
+        Debug.Log("DIE");
     }
 }

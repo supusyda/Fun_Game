@@ -7,7 +7,12 @@ using UnityEngine;
 public class EnemyDamageReciver : DamageReciver
 {
     [SerializeField] Transform player;
+   
+
     [SerializeField] SpriteRenderer spriteRenderer;
+    private void Awake() {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     protected override void hitAnim()
     {
         // animator.SetTrigger("getHit");
