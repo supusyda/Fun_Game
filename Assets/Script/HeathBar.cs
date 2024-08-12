@@ -40,7 +40,6 @@ public class HeathBar : MonoBehaviour
     {
         if (gameObject.activeInHierarchy == false) gameObject.SetActive(true);
         _target = hp ;
-
         StartCoroutine(DrainHealthBar());
     }
 }

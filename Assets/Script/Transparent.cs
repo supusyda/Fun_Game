@@ -11,7 +11,6 @@ public class Transparent : MonoBehaviour
     {
         if (isTransparent == true) return;
         isTransparent = true;
-        Debug.Log("TRANS");
         transform.Find("Model").GetComponent<SpriteRenderer>().DOFade(0.7f, 1);
     }
     public void End()

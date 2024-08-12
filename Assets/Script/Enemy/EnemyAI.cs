@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     {
         Idle,
         Roaming,
+        Chasing,
         Attack,
         GetHit,
         Die
@@ -25,7 +26,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 targetPosition;
     private Vector3 randDir;
     private Collider2D enemyColider;
-
+    [SerializeField] Transform player;
 
     private EnemyState currentState;
     private bool _isInvincible = false;
@@ -54,6 +55,8 @@ public class EnemyAI : MonoBehaviour
     }
 
     [SerializeField] public float maxRoamingRange;
+    [SerializeField] public float maxChaseRange=2f;
+    
     [SerializeField] public Animator animator;
     private bool isFlip;
 
@@ -83,6 +86,9 @@ public class EnemyAI : MonoBehaviour
                 break;
             case EnemyState.Attack:
                 break;
+            case EnemyState.Chasing:
+
+                break;
             case EnemyState.GetHit:
                 animator.CrossFade(RAT_GET_HIT, 0, 0);
                 break;
@@ -102,8 +108,25 @@ public class EnemyAI : MonoBehaviour
             Roaming();
             return;
         }
+        if (CurrentState == EnemyState.Chasing)
+        {
+            Chasing();
+            return;
+        }
 
     }
+
+    private void Chasing()
+    {
+        if (!CanChasingTarget())
+        {
+            CurrentState = EnemyState.Roaming;
+            return;
+        }
+        Vector2 dir = (player.position - transform.position).normalized;
+        enemyMovement.MoveToDir(dir);
+    }
+
     private void Roaming()
     {
         enemyMovement.MoveToDir(randDir);
@@ -114,9 +137,14 @@ public class EnemyAI : MonoBehaviour
             //cal rand roaming pos again
             InitRandRoaming();
         }
+        else if (CanChasingTarget())
+        {
+            CurrentState = EnemyState.Chasing;
+        }
 
 
     }
+
     void InitRandRoaming()
     {
         targetPosition = GetRoamingPosition();
@@ -152,16 +180,33 @@ public class EnemyAI : MonoBehaviour
 
         // if (!GameManager.Instance.DEBUG) return;
         Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, maxChaseRange);
+        // Gizmos.color = Color.green;
         Gizmos.DrawLine(startedPos, targetPosition);
         Gizmos.DrawLine(transform.position, startedPos);
         Gizmos.DrawLine(startedPos, (transform.position - startedPos).normalized * maxRoamingRange);
-
-
     }
     public void SetStateToDie()
     {
         currentState = EnemyState.Die;
         transform.GetComponent<Collider2D>().enabled = false;
     }
+    bool CanChasingTarget()
+    {
+        return Vector3.Distance(transform.position, player.position) <= maxChaseRange;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
 
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log(other.name);
+
+            EnemyDamageDealer enemyDamageDealer = transform.GetComponentInChildren<EnemyDamageDealer>();
+            if (enemyDamageDealer != null)
+            {
+                enemyDamageDealer.onHittingTarget(other.transform.GetComponentInChildren<DamageReciver>());
+            }
+        }
+    }
 }

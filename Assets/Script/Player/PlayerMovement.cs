@@ -136,5 +136,19 @@ public class PlayerMovement : MonoBehaviour
         ParticalSpawner.Instance.SpawnThing(offSetSpawnPos, Quaternion.identity, ParticalSpawner.Instance.DUST_TRAIL_PARTICLE).gameObject.SetActive(true);
 
     }
+    public void LockMovement()
+    {
+        _isLockMoving = true;
+    }
+ public void UnLockMovement()
+    {
+        _isLockMoving = false;
+    }
+    public async void LockMovementForTime(int time)
+    {
+        LockMovement();
+        await Task.Delay(time);
+        UnLockMovement();
 
+    }
 }

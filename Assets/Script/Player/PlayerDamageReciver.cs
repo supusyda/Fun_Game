@@ -4,26 +4,24 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-public class EnemyDamageReciver : DamageReciver
+public class PlayerDamageReciver : DamageReciver
 {
-     Transform player;
-   
-
-    [SerializeField] SpriteRenderer spriteRenderer;
-    private void Awake() {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+    // Start is called before the first frame update
     protected override void hitAnim()
     {
-        // animator.SetTrigger("getHit");
-        transform.parent.GetComponent<EnemyAI>().onGettingHit();
-        hitParticle();
+        base.hitAnim();
+
 
     }
-    void hitParticle()
+    public override void TakeDamage(float damage, Vector2 knockbackVecter)
+    {
+        base.TakeDamage(damage, knockbackVecter);
+        PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.GetHit);
+    }
+    protected override void hitParticle(Vector2 particleDir)
     {
         //rotate the particle the same dir as the player to this transform
-        Vector3 dir = (transform.position - player.position).normalized;
+        Vector3 dir = particleDir.normalized;
         float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Transform particle = ParticalSpawner.Instance.SpawnThing(transform.position, Quaternion.identity, ParticalSpawner.Instance.HIT_PARTICLE);
         particle.gameObject.SetActive(true);
@@ -34,9 +32,9 @@ public class EnemyDamageReciver : DamageReciver
         // transform.parent.DoFa
         ParticalSpawner.Instance.SpawnThing(transform.position, Quaternion.identity, ParticalSpawner.Instance.DEATH_PARTICLE).gameObject.SetActive(true);
 
-        this.spriteRenderer.DOFade(0, 1).onComplete += () =>
+        transform.parent.Find("Model").GetComponent<SpriteRenderer>().DOFade(0, 1).onComplete += () =>
         {
-            transform.parent.GetComponent<EnemyAI>().SetStateToDie();
+
             Destroy(transform.parent.gameObject);
         };
     }

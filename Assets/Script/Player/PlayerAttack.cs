@@ -60,17 +60,12 @@ public class PlayerAttack : MonoBehaviour
     }
     public void ComboAttack()
     {
-
         // PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Attack);
         PlayerCtr.PlayerAnimator.Play(PlayerDefine.PLAYER_ATTACK_ANIMATION);
-
         StartCoroutine(nextComboAttack(PlayerCtr.PlayerAnimator.GetCurrentAnimatorStateInfo(0).length));
-
     }
     bool checkIsCanDoComboAttack()
     {
-
-
         return _isComboAttack == true;
     }
 

@@ -12,6 +12,7 @@ public class DamageReciver : MonoBehaviour
     Collider2D collider2D;
      [SerializeField] HeathBar healthBar;
     [SerializeField] public float hp;
+    protected Vector2 knockBackVector;
     protected float Hp
     {
         set
@@ -63,6 +64,7 @@ public class DamageReciver : MonoBehaviour
         this.KnockBack(knockbackVecter);
         this.DeduceHp(damage);
         this.hitAnim();
+        hitParticle(knockbackVecter);
 
 
     }
@@ -79,6 +81,11 @@ public class DamageReciver : MonoBehaviour
 
         }
     }
+     protected virtual void hitParticle(Vector2 particelDir)
+    {
+
+    }
+
     protected virtual void hitAnim()
     {
 

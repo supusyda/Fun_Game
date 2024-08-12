@@ -29,6 +29,9 @@ public class PlayerCtr : MonoBehaviour
     {
         Idle,
         Moving,
+
+        GetHit,
+
         Attack
     }
     private void Awake()
@@ -78,6 +81,9 @@ public class PlayerCtr : MonoBehaviour
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
                 playerAttack.ComboAttack();
 
+                break;
+                case PlayerState.GetHit:
+                PlayerMovement.LockMovementForTime(200);         
                 break;
 
                 // if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION))
