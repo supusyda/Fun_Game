@@ -200,7 +200,7 @@ public class EnemyAI : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log(other.name);
+           
 
             EnemyDamageDealer enemyDamageDealer = transform.GetComponentInChildren<EnemyDamageDealer>();
             if (enemyDamageDealer != null)

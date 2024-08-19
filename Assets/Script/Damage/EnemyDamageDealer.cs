@@ -18,7 +18,7 @@ public class EnemyDamageDealer : MonoBehaviour
             knockBackForce = 20f;
             Vector2 knockBackDir = (target.transform.position - transform.position).normalized;
             knockBackDir = knockBackDir * knockBackForce;
-                      targetHit.TakeDamage(damage, knockBackDir);
+            targetHit.TakeDamage(damage, knockBackDir);
 
         }
     }

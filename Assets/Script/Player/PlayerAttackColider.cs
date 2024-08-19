@@ -12,9 +12,10 @@ public class PlayerAttackColider : MonoBehaviour
     {
         if (other.GetComponentInChildren<DamageReciver>())
         {
-            Debug.Log(other.transform.GetComponentInChildren<DamageReciver>());
-            DamageReciver damageReciver = other.GetComponentInChildren<DamageReciver>();
-            EventDefine.onTargetInRange?.Invoke(damageReciver);
+            DamageReciver damageReciver = other.GetComponentInChildren<DamageReciver>();//Get hit object DamageReciver
+            if (damageReciver == null) return;
+            transform.parent.GetComponent<DamageDealer>().onHittingEnemy(damageReciver);
+
         }
     }
 }

@@ -86,13 +86,7 @@ public class PlayerCtr : MonoBehaviour
                 PlayerMovement.LockMovementForTime(200);         
                 break;
 
-                // if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION))
-                // {
-                //     newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION_2;
-                //     break;
-                // }
-                // newAnimateState = PlayerDefine.PLAYER_ATTACK_ANIMATION;
-                // break;
+             
         }
 
 

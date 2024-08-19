@@ -6,19 +6,29 @@ using UnityEngine;
 
 public class EnemyDamageReciver : DamageReciver
 {
-     Transform player;
-   
+    Transform player;
+    EnemyBase enemy;
+
 
     [SerializeField] SpriteRenderer spriteRenderer;
-    private void Awake() {
+    private void Awake()
+    {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemy = GetComponentInParent<EnemyBase>();
+
     }
     protected override void hitAnim()
     {
         // animator.SetTrigger("getHit");
-        transform.parent.GetComponent<EnemyAI>().onGettingHit();
+
         hitParticle();
 
+    }
+    public override void TakeDamage(float damage, Vector2 knockbackVecter)
+    {
+        enemy.enemyStateMachine.ChangeState(enemy.enemyDamageState);
+
+        base.TakeDamage(damage, knockbackVecter);
     }
     void hitParticle()
     {
@@ -36,7 +46,7 @@ public class EnemyDamageReciver : DamageReciver
 
         this.spriteRenderer.DOFade(0, 1).onComplete += () =>
         {
-            transform.parent.GetComponent<EnemyAI>().SetStateToDie();
+            
             Destroy(transform.parent.gameObject);
         };
     }
