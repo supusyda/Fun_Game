@@ -17,7 +17,7 @@ public class TargetDetector : TriggerAttackInRange
     }
     override protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Enemy"))
         {
             targets.Add(other.transform);
             shooter.SetTarget(targets);
@@ -26,7 +26,7 @@ public class TargetDetector : TriggerAttackInRange
     }
     override protected void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Enemy"))
         {
             // targets.Remove(other.transform);
             // shooter.SetTarget(targets);

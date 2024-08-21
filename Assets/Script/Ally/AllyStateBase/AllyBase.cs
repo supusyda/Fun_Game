@@ -37,7 +37,7 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
         allyIdleState = new AllyIdleState(stateMachine, this);
         allyAttackState = new AllyAttackBase(stateMachine, this);
         RB = GetComponent<Rigidbody2D>();
-
+        
 
 
         AllyIdleStateSOBase.Init(this, transform, gameObject);

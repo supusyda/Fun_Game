@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7724250977882551597}
   - component: {fileID: 3217191334195940205}
   m_Layer: 0
-  m_Name: TargetDetect
+  m_Name: TriggerDetectorRangeAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.68
+  m_Radius: 3
 --- !u!114 &3217191334195940205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8339227421040525666}
   - component: {fileID: 5369565910345772364}
+  - component: {fileID: 8090275229381961289}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -146,7 +147,7 @@ Transform:
   - {fileID: 1332049501949848571}
   - {fileID: 6764001708108665481}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5369565910345772364
 MonoBehaviour:
@@ -160,10 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cc5a0661399d04997213a0ab8032cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 7767675654254650573, guid: 2ee8257dc5c7b6a4fa8b3258564d0dae, type: 3}
   target: {fileID: 0}
   shootRate: 1
-  projectileMaxMoveSpeed: 3.96
+  projectileMaxMoveSpeed: 4
   projectileMaxHeight: 0.55
   trajectoryAnimationCurve:
     serializedVersion: 2
@@ -255,6 +256,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8090275229381961289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4494001245799515451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ddd4587ab4d21a458036795767e8b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  allyIdleStateSOBase: {fileID: 11400000, guid: 9f737b9acf7ee3e4b90b26db31f1f6ae, type: 2}
+  allyAttackSOBase: {fileID: 11400000, guid: a46031f3ce7d9d34e965d5734ff91f32, type: 2}
+  AllyIdleStateSOBase: {fileID: 0}
+  AllyAttackSOBase: {fileID: 0}
 --- !u!1 &6996524045469218618
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,6 +283,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8120371867394095231}
   - component: {fileID: 5013107974119347904}
+  - component: {fileID: 7609325428035285206}
+  - component: {fileID: 7860204805842283301}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -339,6 +359,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &7609325428035285206
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996524045469218618}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 248d65bcdbdb3594f8137dfd77474077, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7860204805842283301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6996524045469218618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d43969263821b241a0a81d1af3ebd20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7743874579240818776
 GameObject:
   m_ObjectHideFlags: 0

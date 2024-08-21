@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - DestroyAble
+  - AllyDamageDealer
   layers:
   - Default
   - TransparentFX
@@ -13,7 +14,7 @@ TagManager:
   - Camera
   - Water
   - UI
-  - 
+  - Building OverLap Layer
   - 
   - 
   - 

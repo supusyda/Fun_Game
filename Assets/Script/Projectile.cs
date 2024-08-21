@@ -89,7 +89,7 @@ public class Projectile : MonoBehaviour
     private float moveSpeed;
     private float maxMoveSpeed;
     private float trajectoryMaxRelativeHeight;
-    private float distanceToTargetToDestroyProjectile = 1f;
+    private float distanceToTargetToDestroyProjectile = .1f;
 
     private AnimationCurve trajectoryAnimationCurve;
     private AnimationCurve axisCorrectionAnimationCurve;
