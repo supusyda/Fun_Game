@@ -16,6 +16,7 @@ public class PlayerDamageReciver : DamageReciver
     public override void TakeDamage(float damage, Vector2 knockbackVecter)
     {
         base.TakeDamage(damage, knockbackVecter);
+        // TimeManager.Instance.SlowDownTime();
         PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.GetHit);
     }
     protected override void hitParticle(Vector2 particleDir)

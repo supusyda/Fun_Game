@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy-Chasing-Normal", menuName = "Enemy/Chasing/Normal")]
 public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
 {
-   public float chasingSpeed ;
+    public float chasingSpeed;
     override public void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
     {
         base.Init(enemy, transform, gameObject);
@@ -13,6 +13,7 @@ public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
     {
         base.DoEnterState();
         enemy.animator.Play("Run");
+
         enemy.SetSpeed(chasingSpeed);
 
     }
@@ -23,6 +24,11 @@ public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
     public override void DoFrameUpdate()
     {
         base.DoFrameUpdate();
+        if (enemy.target == null)
+        {
+            enemy.enemyStateMachine.ChangeState(enemy.enemyRoamingState);
+            return;
+        }
         Vector2 dir = (enemy.target.position - enemy.transform.position).normalized;
         enemy.MoveEnemy(dir);
     }

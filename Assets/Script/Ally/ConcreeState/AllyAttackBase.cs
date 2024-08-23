@@ -18,7 +18,7 @@ public class AllyAttackBase : AllyStateBase
     override public void EnterState()
     {
         base.EnterState();
-        Debug.Log("ENTER STATE Attack");
+        // Debug.Log("ENTER STATE Attack");
         allyBase.AllyAttackSOBase.DoEnterState();
     }
     override public void FrameUpdate()

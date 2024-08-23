@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005e5536e06a640489589ec4e14bcaba, type: 3}
+  m_Name: SlashProjectleAbility
+  m_EditorClassIdentifier: 
+  cooldown: 3
+  cooldownRemaining: 0
+  name: "\xE1dsad"
+  sprite: {fileID: 570472823, guid: c97e03d9c3672cc42a3a4d3c99a66430, type: 3}
+  prefab: {fileID: 0}

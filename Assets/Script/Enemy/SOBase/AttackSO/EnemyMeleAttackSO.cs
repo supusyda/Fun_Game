@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy-Attack-Melee", menuName = "Enemy/Attack/Melee")]
 public class EnemyMeleAttackSO : EnemyAttackSOBase
@@ -23,10 +24,12 @@ public class EnemyMeleAttackSO : EnemyAttackSOBase
     {
         base.DoExitState();
     }
-    override public void DoFrameUpdate()
+    override async public void DoFrameUpdate()
     {
         base.DoFrameUpdate();
         enemy.MoveEnemy(Vector2.zero);
+        await Task.Delay(1000);
+
         if(!enemy.isAttackWithInRange && !enemy.isArgo) 
         {
              enemy.enemyStateMachine.ChangeState(enemy.enemyRoamingState);

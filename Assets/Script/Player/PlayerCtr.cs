@@ -25,6 +25,7 @@ public class PlayerCtr : MonoBehaviour
     private static Transform trail;
 
     public static Transform Trail { get => trail; }
+    public static Shooter shooter;
     public enum PlayerState
     {
         Idle,
@@ -42,6 +43,7 @@ public class PlayerCtr : MonoBehaviour
         playerAttack = transform.Find("Attack").GetComponent<PlayerAttack>();
         rb2D = GetComponent<Rigidbody2D>();
         trail = transform.Find("Trail");
+        shooter = GetComponent<Shooter>();
     }
     private void OnEnable()
     {
@@ -80,6 +82,8 @@ public class PlayerCtr : MonoBehaviour
 
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
                 playerAttack.ComboAttack();
+                shooter.BeginShoot();
+                
 
                 break;
                 case PlayerState.GetHit:

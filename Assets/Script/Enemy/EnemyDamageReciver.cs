@@ -42,11 +42,14 @@ public class EnemyDamageReciver : DamageReciver
     protected override void Die(Action<string> callback = null)
     {
         // transform.parent.DoFa
+        Collider2D collider2D = GetComponentInParent<Collider2D>();
+        collider2D.enabled = false;
+
         ParticalSpawner.Instance.SpawnThing(transform.position, Quaternion.identity, ParticalSpawner.Instance.DEATH_PARTICLE).gameObject.SetActive(true);
 
         this.spriteRenderer.DOFade(0, 1).onComplete += () =>
         {
-            
+
             Destroy(transform.parent.gameObject);
         };
     }

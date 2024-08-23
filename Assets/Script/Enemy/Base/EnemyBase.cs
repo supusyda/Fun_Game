@@ -51,12 +51,12 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
         enemyHitBox = transform.GetComponent<Collider2D>();
 
 
-
         EnemyRoamingSOBase.Init(this, transform, gameObject);
         EnemyChasingSOBase.Init(this, transform, gameObject);
         EnemyAttackSOBase.Init(this, transform, gameObject);
 
 
+  
 
     }
     private void Start()
@@ -65,6 +65,10 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
         animator = GetComponentInChildren<Animator>();
         speed = 1f;
         enemyStateMachine.Init(enemyRoamingState);
+
+    }
+ public void  OnDie()
+    {
 
     }
     public void CheckForFaceDir(Vector2 dir)

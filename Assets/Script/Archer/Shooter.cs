@@ -46,26 +46,25 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform target;
+    [SerializeField] protected GameObject projectilePrefab;
+    [SerializeField] protected Transform target;
 
-    [SerializeField] private float shootRate;
-    [SerializeField] private float projectileMaxMoveSpeed;
-    [SerializeField] private float projectileMaxHeight;
+    [SerializeField] protected float shootRate;
+    [SerializeField] protected float projectileMaxMoveSpeed;
+    [SerializeField] protected float projectileMaxHeight;
 
-    [SerializeField] private AnimationCurve trajectoryAnimationCurve;
-    [SerializeField] private AnimationCurve axisCorrectionAnimationCurve;
-    [SerializeField] private AnimationCurve projectileSpeedAnimationCurve;
+    [SerializeField] protected AnimationCurve trajectoryAnimationCurve;
+    [SerializeField] protected AnimationCurve axisCorrectionAnimationCurve;
+    [SerializeField] protected AnimationCurve projectileSpeedAnimationCurve;
 
-   
 
-  
-    public void BeginShoot()
+
+
+    public virtual void BeginShoot()
     {
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.SetActive(true);
         Projectile projectileS = projectile.GetComponent<Projectile>();
-
         projectileS.InitializeProjectile(target.position, projectileMaxMoveSpeed, projectileMaxHeight);
         projectileS.InitializeAnimationCurves(trajectoryAnimationCurve, axisCorrectionAnimationCurve, projectileSpeedAnimationCurve);
     }

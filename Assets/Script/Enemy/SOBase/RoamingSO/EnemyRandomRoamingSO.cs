@@ -19,8 +19,8 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     override public void DoEnterState()
     {
         base.DoEnterState();
+        Debug.Log(enemy);
         enemy.animator.Play("Run");
-
         InitRandRoaming();
         enemy.SetSpeed(speed);
 
