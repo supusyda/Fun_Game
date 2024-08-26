@@ -24,7 +24,7 @@ public class EnemyAttackState : EnemyStateBase
      
         base.EnterState();
         enemyBase.EnemyAttackSOBase.DoEnterState();
-        Debug.Log("ENTER STATE ATTACK");
+        // Debug.Log("ENTER STATE ATTACK");
 
     }
     public override void FrameUpdate()

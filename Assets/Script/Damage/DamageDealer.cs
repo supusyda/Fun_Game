@@ -8,7 +8,7 @@ public class DamageDealer : MonoBehaviour
 
     public float damage = 1;
     public float knockBackForce;
-    private DamageReciver targetHit;
+    protected DamageReciver targetHit;
     public Collider2D hitBox;
     private void Awake()
     {
@@ -17,18 +17,16 @@ public class DamageDealer : MonoBehaviour
 
     // Start is called before the first frame update
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
 
         onHittingEnemy(other.GetComponentInChildren<DamageReciver>());
     }
-    public void onHittingEnemy(DamageReciver enemy)
+    public virtual void onHittingEnemy(DamageReciver enemy)
     {
-        Debug.Log("WTFFFF");
+
         if (enemy)
         {
-
-
             // CharacterEvent.dealDamage
             targetHit = enemy;
 

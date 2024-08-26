@@ -82,7 +82,7 @@ public class PlayerCtr : MonoBehaviour
 
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
                 playerAttack.ComboAttack();
-                shooter.BeginShoot();
+               
                 
 
                 break;

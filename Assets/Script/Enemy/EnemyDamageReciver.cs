@@ -50,7 +50,7 @@ public class EnemyDamageReciver : DamageReciver
         this.spriteRenderer.DOFade(0, 1).onComplete += () =>
         {
 
-            Destroy(transform.parent.gameObject);
+            EnemySpawner.Instance.DespawnOjb(transform.parent);
         };
     }
 }

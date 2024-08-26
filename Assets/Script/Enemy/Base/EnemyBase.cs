@@ -6,6 +6,7 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
 {
     // Start is called before the first frame update
     public Rigidbody2D RB { get; set; }
+    public DangerZone dangerZone { get; private set; }
     public Collider2D enemyHitBox { get; set; }
     public Animator animator { get; set; }
     public bool IsFacingRight { get; set; } = false;
@@ -56,18 +57,21 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
         EnemyAttackSOBase.Init(this, transform, gameObject);
 
 
-  
+
+
+
 
     }
     private void Start()
     {
         RB = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        dangerZone = GetComponentInChildren<DangerZone>();
         speed = 1f;
         enemyStateMachine.Init(enemyRoamingState);
 
     }
- public void  OnDie()
+    public void OnDie()
     {
 
     }

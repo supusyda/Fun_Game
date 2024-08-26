@@ -14,7 +14,7 @@ public class EnemyChasingState : EnemyStateBase
     {
         base.EnterState();
         // enemyBase.animator.Play("Run");
-        Debug.Log("ENTER STATE CHASING");
+        
         enemyBase.EnemyChasingSOBase.DoEnterState();
 
     }

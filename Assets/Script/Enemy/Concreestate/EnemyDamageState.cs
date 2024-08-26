@@ -14,7 +14,7 @@ public class EnemyDamageState : EnemyStateBase
         base.EnterState();
         enemyBase.animator.Play("GetHit");
         enemyBase.StartCoroutineInvincibleIntime(timeInvincible);
-        Debug.Log("ENTER STATE DAMAGE");
+        // Debug.Log("ENTER STATE DAMAGE");
         timer = 0;
 
     }
@@ -38,6 +38,7 @@ public class EnemyDamageState : EnemyStateBase
     override public void ExitState()
     {
         base.ExitState();
+                timer = 0;
     }
     // Start is called before the first frame update
 

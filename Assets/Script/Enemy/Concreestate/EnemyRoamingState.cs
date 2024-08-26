@@ -13,7 +13,7 @@ public class EnemyRoamingState : EnemyStateBase
     public override void EnterState()
     {
         base.EnterState();
-        Debug.Log("ENTER STATE ROAMING");
+       
         enemyBase.EnemyRoamingSOBase.DoEnterState();
 
     }

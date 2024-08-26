@@ -2,24 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Roaming-random", menuName ="Enemy/Roaming/Random")]
+[CreateAssetMenu(fileName = "Roaming-random", menuName = "Enemy/Roaming/Random")]
 public class EnemyRandomRoamingSO : EnemyRoamingSOBase
 {
     // Start is called before the first frame update
-      [SerializeField] public float maxRoamingRange=5f;
+    [SerializeField] public float maxRoamingRange = 5f;
     [SerializeField] public Vector3 startedPos;
     private Vector3 targetPosition;
     private Vector3 randDir;
     private float speed = 1f;
 
- override public void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
+    override public void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
     {
         base.Init(enemy, transform, gameObject);
     }
     override public void DoEnterState()
     {
         base.DoEnterState();
-        Debug.Log(enemy);
         enemy.animator.Play("Run");
         InitRandRoaming();
         enemy.SetSpeed(speed);
@@ -32,7 +31,7 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     override public void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-         Roaming();
+        Roaming();
     }
     override public void DoPhysicUpdate()
     {
@@ -46,7 +45,7 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     {
         base.ResetValue();
     }
-     private void Roaming()
+    private void Roaming()
     {
         enemy.MoveEnemy(randDir);
         if (Vector3.Distance(enemy.transform.position, targetPosition) <= 1f || Vector3.Distance(enemy.transform.position, startedPos) >= maxRoamingRange)
@@ -57,7 +56,7 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
             InitRandRoaming();
         }
     }
-      Vector3 GetRoamingPosition()
+    Vector3 GetRoamingPosition()
     {
         // get rand roaming pos reletive to the started pos of the oject
         float rand = UnityEngine.Random.Range(1f, maxRoamingRange);
@@ -72,7 +71,7 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     {
         targetPosition = GetRoamingPosition();
         // Debug.Log("targetPosition" + targetPosition);
-
+        if (targetPosition == null) return;
         randDir = (targetPosition - enemy.transform.position).normalized;
     }
 }
