@@ -33,6 +33,7 @@ public class EnemyDamageReciver : DamageReciver
     void hitParticle()
     {
         //rotate the particle the same dir as the player to this transform
+        if (player == null) return;
         Vector3 dir = (transform.position - player.position).normalized;
         float rot_z = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         Transform particle = ParticalSpawner.Instance.SpawnThing(transform.position, Quaternion.identity, ParticalSpawner.Instance.HIT_PARTICLE);

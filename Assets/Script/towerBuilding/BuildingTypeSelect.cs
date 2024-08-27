@@ -20,7 +20,9 @@ public class BuildingTypeSelect : MonoBehaviour
             buidingUI.SetParent(transform);
             //set image for the btn
             buidingUI.Find("Image").GetComponent<Image>().sprite = item.image;
+            // make the scale fixed
             buidingUI.localScale = new Vector3(1, 1, 1);
+            // add event on btn click
             buidingUI.GetComponent<Button>().onClick.AddListener(() =>
             {
                 BuildingManager.Instance.SetSelectedBuilding(item);
@@ -28,7 +30,7 @@ public class BuildingTypeSelect : MonoBehaviour
                 if (BuildingManager.Instance.selectedBuilding == null) return;
                 buidingUI.Find("SelectecdBG").gameObject.SetActive(true);
             });
-            // buidingUI.Find("SelectecdBG").gameObject.SetActive(false);
+         
             //add to the dictionary buidingBtndic[item] = buidingUI
             buidingBtnDic.Add(item, buidingUI);
 
