@@ -26,7 +26,8 @@ public class AllyIdleStateSOBase : StateSOBase
     override public void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-        if (ally.isAttackWithInLongRange == true) ally.stateMachine.ChangeState(ally.allyAttackState);
+        // if(ally.isArgo==true)ally.stateMachine.ChangeState(ally.chasin)
+        if (ally.isAttackWithInLongRange == true || ally.isAttackWithInRange==true) ally.stateMachine.ChangeState(ally.allyAttackState);
     }
     override public void DoPhysicUpdate()
     {

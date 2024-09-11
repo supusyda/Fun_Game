@@ -7,11 +7,11 @@ public class SlashProjectleAbilitySO : AbilitySO
     // Start is called before the first frame update
     Transform transform;
     GameObject gameObject;
-       public Transform prefab;
+    public Transform prefab;
     public override void Init(Transform transform)
     {
         this.transform = transform;
-        
+
 
     }
     public override void Use(Transform transform)
@@ -21,7 +21,7 @@ public class SlashProjectleAbilitySO : AbilitySO
     }
     public override void OnBegin()
     {
-        
+
         transform.GetComponentInParent<Shooter>().BeginShoot();
     }
     public override void Update()

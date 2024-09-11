@@ -8,7 +8,7 @@ public interface IMoveAle
     Rigidbody2D RB { get; set; }
     bool IsFacingRight { get; set; }
     float speed { get; set; }
-    void MoveEnemy(Vector2 dir);
+    void Move(Vector2 dir);
     void CheckForFaceDir(Vector2 dir);
 
 }

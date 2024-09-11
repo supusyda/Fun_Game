@@ -27,12 +27,12 @@ public class EnemyMeleAttackSO : EnemyAttackSOBase
     override async public void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-        enemy.MoveEnemy(Vector2.zero);
+        enemy.Move(Vector2.zero);
         await Task.Delay(1000);
 
-        if(!enemy.isAttackWithInRange && !enemy.isArgo) 
+        if (!enemy.isAttackWithInRange && !enemy.isArgo)
         {
-             enemy.enemyStateMachine.ChangeState(enemy.enemyRoamingState);
+            enemy.enemyStateMachine.ChangeState(enemy.enemyRoamingState);
             return;
         }
         if (!enemy.isAttackWithInRange)

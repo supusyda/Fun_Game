@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerCtr : MonoBehaviour
+public class PlayerCtr : MonoBehaviour, IClickAble
 {
     // Start is called before the first frame update
 
@@ -26,6 +26,7 @@ public class PlayerCtr : MonoBehaviour
 
     public static Transform Trail { get => trail; }
     public static Shooter shooter;
+    [SerializeField] static public Level myLevel { get; private set; }
     public enum PlayerState
     {
         Idle,
@@ -44,6 +45,14 @@ public class PlayerCtr : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         trail = transform.Find("Trail");
         shooter = GetComponent<Shooter>();
+        myLevel = new();
+        Debug.Log(myLevel);
+
+
+    }
+    private void Start()
+    {
+        LevelBar.OnCompleteLoadPlayerLevel?.Invoke(myLevel);
     }
     private void OnEnable()
     {
@@ -82,15 +91,15 @@ public class PlayerCtr : MonoBehaviour
 
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
                 playerAttack.ComboAttack();
-               
-                
+
+
 
                 break;
-                case PlayerState.GetHit:
-                PlayerMovement.LockMovementForTime(200);         
+            case PlayerState.GetHit:
+                PlayerMovement.LockMovementForTime(200);
                 break;
 
-             
+
         }
 
 
@@ -101,6 +110,8 @@ public class PlayerCtr : MonoBehaviour
         PlayerAnimator.Play(newAnimateState);
     }
 
-
-
+    public void Click()
+    {
+        EventDefine.OnClickOnPlayer?.Invoke();
+    }
 }

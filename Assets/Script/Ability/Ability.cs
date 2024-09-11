@@ -7,7 +7,7 @@ public class Ability
 {
     // Start is called before the first frame update
     Transform transform;
-    AbilitySO abilitySO;
+    public AbilitySO abilitySO;
     float timeCooldown;
     float timeCooldownRemaining;
     AbilityState abilityState;

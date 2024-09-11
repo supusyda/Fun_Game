@@ -49,7 +49,7 @@ public class SpawnEnemyManager : MonoBehaviour
     {
       int randEnemy = Random.Range(0, EnemySpawner.Instance.getPrefabCount());
       int enemyCost = 1;
-      if (tempValue - enemyCost >= 0)
+      if (tempValue - enemyCost > 0)
       {
         tempValue -= enemyCost;
         Transform enemy = EnemySpawner.Instance.SpawnEnemyByIndex(randEnemy, RandomCircle(transform.position, 6f), Quaternion.identity);
@@ -60,25 +60,25 @@ public class SpawnEnemyManager : MonoBehaviour
     }
 
   }
-  private Vector3 RandomPointOnCircleEdge(float radius)
-  {
-
-    bool correctSpawn = false;
-
-    Vector2 vector2 = new Vector2(0, 0);
-
-    //Number of times we will try to search for an empty position
-    int searchCount = 10;
-
-    while (searchCount-- > 0 && !correctSpawn)
+    public static Vector3 RandomPointOnCircleEdge(float radius)
     {
-      vector2 = Random.insideUnitCircle.normalized * radius;
 
-      correctSpawn = CheckIfPositionIsOcuppied(vector2);
+      bool correctSpawn = false;
+
+      Vector2 vector2 = new Vector2(0, 0);
+
+      //Number of times we will try to search for an empty position
+      int searchCount = 10;
+
+      while (searchCount-- > 0 && !correctSpawn)
+      {
+        vector2 = Random.insideUnitCircle.normalized * radius;
+
+        correctSpawn = CheckIfPositionIsOcuppied(vector2);
+      }
+
+      return new Vector3(vector2.x, 0, vector2.y);
     }
-
-    return new Vector3(vector2.x, 0, vector2.y);
-  }
   private static bool CheckIfPositionIsOcuppied(Vector2 vector2)
   {
     bool correctSpawn = true;

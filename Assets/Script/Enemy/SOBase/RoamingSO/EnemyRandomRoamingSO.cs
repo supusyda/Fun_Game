@@ -47,7 +47,7 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     }
     private void Roaming()
     {
-        enemy.MoveEnemy(randDir);
+        enemy.Move(randDir);
         if (Vector3.Distance(enemy.transform.position, targetPosition) <= 1f || Vector3.Distance(enemy.transform.position, startedPos) >= maxRoamingRange)
         {
             // reach rand roaming pos 

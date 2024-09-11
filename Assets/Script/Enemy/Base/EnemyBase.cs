@@ -101,7 +101,7 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     {
         enemyStateMachine.CurrentEnemyState.PhysicUpdate();
     }
-    public void MoveEnemy(Vector2 dir)
+    public void Move(Vector2 dir)
     {
         if (dir == Vector2.zero) return;
         Vector2 transVec2 = new Vector2(transform.position.x, transform.position.y);

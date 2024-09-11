@@ -24,11 +24,11 @@ public class EnemyAttackChrageSoBase : EnemyAttackSOBase
         base.DoEnterState();
         enemy.animator.Play("Idle");
 
-        enemy.MoveEnemy(Vector2.zero);
+        enemy.Move(Vector2.zero);
         playerPos = new Vector3(player.position.x, player.position.y, 0);
         Vector2 chargeDir = (playerPos - transform.position).normalized;//get dir form enemy to player then normalize
         Vector3 forceVec = chargeDir * force;
-        enemy.dangerZone.SetPos(transform.position + forceVec);
+        enemy.dangerZone.SetPos(transform.position + forceVec / 2);
         await Task.Delay(chargeTime * 1000);
         if (enemy.enemyStateMachine.CurrentEnemyState != enemy.enemyAttackState) return;
 

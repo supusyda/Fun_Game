@@ -40,6 +40,7 @@ public class EnemyDamageReciver : DamageReciver
         particle.gameObject.SetActive(true);
         particle.rotation = Quaternion.Euler(0f, 0f, rot_z);
     }
+    // do some thing when HP <= 0 
     protected override void Die(Action<string> callback = null)
     {
         // transform.parent.DoFa
@@ -50,8 +51,11 @@ public class EnemyDamageReciver : DamageReciver
 
         this.spriteRenderer.DOFade(0, 1).onComplete += () =>
         {
-
+            //find if there is drop 
+            DropThing drop = transform.parent.GetComponentInChildren<DropThing>();
             EnemySpawner.Instance.DespawnOjb(transform.parent);
+
+            if (drop) drop.Drop();//if has then do drop
         };
     }
 }

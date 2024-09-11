@@ -120,10 +120,10 @@ public class PlayerMovement : MonoBehaviour
         //dash and lock movement
         PlayerCtr.Trail.gameObject.SetActive(true);
         PlayerCtr.Rb2D.AddForce(dashDir, ForceMode2D.Impulse);
+        
         _isLockMoving = true;
         await Task.Delay(500);
         PlayerCtr.Trail.gameObject.SetActive(false);
-
         // unlock movement and stop dash
         PlayerCtr.Rb2D.velocity = Vector3.zero;
         _isLockMoving = false;
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _isLockMoving = true;
     }
- public void UnLockMovement()
+    public void UnLockMovement()
     {
         _isLockMoving = false;
     }

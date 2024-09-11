@@ -17,6 +17,7 @@ public class HeathBar : MonoBehaviour
         healthBar = transform.GetComponent<Slider>();
         healthBar.maxValue = objectHealth.maxHp;
         healthBar.value = objectHealth.maxHp;
+        // if (objectHealth.transform.parent.CompareTag("Player")) gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
 
@@ -39,7 +40,7 @@ public class HeathBar : MonoBehaviour
     public void SetHealth(int hp)
     {
         if (gameObject.activeInHierarchy == false) gameObject.SetActive(true);
-        _target = hp ;
+        _target = hp;
         StartCoroutine(DrainHealthBar());
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class TriggerArgo : MonoBehaviour
 {
     // Start is called before the first frame update
-    EnemyBase enemy;
+ [SerializeField]   EnemyBase enemy;
     Collider2D collider2D;
     private void Awake() {
         enemy = GetComponentInParent<EnemyBase>();

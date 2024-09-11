@@ -18,6 +18,7 @@ public class AllyAttackSOBase : StateSOBase
     }
     override public void DoEnterState()
     {
+        Debug.Log("djkádínadjsađạnn");
         base.DoEnterState();
         ally.animator.Play("Attack");
         // this.attackCooldownTimer = 0f;
@@ -36,7 +37,7 @@ public class AllyAttackSOBase : StateSOBase
         if (!CheckAnimationStateIsPlaying("Attack"))
         {
             ally.animator.Play("Idle");
-            
+
         }
         if (this.attackCooldownTimer < this.attackCooldown) return;
 

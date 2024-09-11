@@ -70,7 +70,7 @@ public class Shooter : MonoBehaviour
     }
     public void SetTarget(List<Transform> targets)
     {
-        if (targets.Count > 0)
+        if (targets.Count > 0 && targets[0])
         {
             this.target = targets[0];
             return;

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Enemy-Attack-ChargeAtPlayer
   m_EditorClassIdentifier: 
   chargeTime: 1
-  force: 2
+  force: 7

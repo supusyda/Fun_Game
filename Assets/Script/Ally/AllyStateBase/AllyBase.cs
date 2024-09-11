@@ -14,7 +14,7 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
     public bool isAttackWithInLongRange { get; set; }
     public Animator animator { get; set; }
     public Transform target;
-
+    // public 
     [SerializeField] private AllyIdleStateSOBase allyIdleStateSOBase;
     [SerializeField] private AllyAttackSOBase allyAttackSOBase;
 
@@ -26,9 +26,9 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
     public AllyIdleState allyIdleState;
     public AllyAttackBase allyAttackState;
 
-    private void Awake()
+    virtual protected void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
+        GetAnimator();
         stateMachine = new StateMachineBase();
 
         AllyIdleStateSOBase = Instantiate(allyIdleStateSOBase);
@@ -37,7 +37,7 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
         allyIdleState = new AllyIdleState(stateMachine, this);
         allyAttackState = new AllyAttackBase(stateMachine, this);
         RB = GetComponent<Rigidbody2D>();
-        
+
 
 
         AllyIdleStateSOBase.Init(this, transform, gameObject);
@@ -46,22 +46,46 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
 
 
 
-       
+
 
     }
-    public void Update(){
+    void GetAnimator()
+    {
+        animator = GetComponentInChildren<Animator>();
+        if (!animator) GetComponent<Animator>();
+    }
+    public void Update()
+    {
         stateMachine.CurrentState.FrameUpdate();
     }
     public void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicUpdate();
     }
-   private void Start() {
-    stateMachine.Init(allyIdleState);
-   }
+    private void Start()
+    {
+        stateMachine.Init(allyIdleState);
+        speed = 2f;
+    }
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+    }
     public virtual void CheckForFaceDir(Vector2 dir)
     {
+        if (IsFacingRight && dir.x < 0f)
+        {
+            Vector3 rotator = new Vector3(0f, 0f, 0f);
+            transform.rotation = Quaternion.Euler(rotator);
+            IsFacingRight = !IsFacingRight;
+        }
+        else if (!IsFacingRight && dir.x > 0f)
+        {
 
+            Vector3 rotator = new Vector3(0f, 180f, 0f);
+            transform.rotation = Quaternion.Euler(rotator);
+            IsFacingRight = !IsFacingRight;
+        }
     }
 
     public void HandleAttack()
@@ -83,13 +107,14 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
     {
         this.isArgo = isArgo;
     }
-    protected virtual void SetTarget(Transform target)
+   
+
+    public void Move(Vector2 dir)
     {
+        if (dir == Vector2.zero) return;
 
-    }
-
-    public void MoveEnemy(Vector2 dir)
-    {
-
+        Vector2 transVec2 = new Vector2(transform.position.x, transform.position.y);
+        RB.MovePosition(transVec2 + dir * (Time.deltaTime * speed));
+        CheckForFaceDir(dir);
     }
 }

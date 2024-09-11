@@ -28,7 +28,7 @@ public class TargetDetector : TriggerAttackInRange
     {
         if (other.CompareTag("Enemy"))
         {
-            // targets.Remove(other.transform);
+            targets.Remove(other.transform);
             // shooter.SetTarget(targets);
             allyBase.setAttackWithInLongRange(false);
 

@@ -38,7 +38,7 @@ public class BuildingManager : MonoBehaviourSingleton<BuildingManager>
     }
     public void SetSelectedBuilding(BuildingSO building)
     {
-        if(selectedBuilding == building) 
+        if (selectedBuilding == building)
         {
             selectedBuilding = null;
             return;
@@ -49,23 +49,32 @@ public class BuildingManager : MonoBehaviourSingleton<BuildingManager>
     public bool CanSpawnBuiding(BuildingSO buildingSO, Vector3 position)
     {
 
-
         //get the  OverLapBoxCollider of the building
         BoxCollider2D boxCollider2D = buildingSO.prefab.Find("OverLapBoxCollider").GetComponent<BoxCollider2D>();
         // checking the buiding is over lap other building 
         bool isOverLapOtherBuilding = Physics2D.OverlapBox(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0, layerMask) != null;
+
+        Collider2D abc = Physics2D.OverlapBox(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0, layerMask);
+        Debug.Log(abc);
+
+
+
+
+
+
         if (isOverLapOtherBuilding) return false;// overlap other buiding 
-  
+        Debug.Log("#############");
         float maxBuildingRadius = 3f;
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(position, maxBuildingRadius, layerMask);
         foreach (Collider2D collider2D in collider2Ds)
         {
+            Debug.Log(collider2D.name);
             bool hasBuildInRadius = collider2D.GetComponentInParent<Building>() != null;
             if (hasBuildInRadius) return true;// not over lap and has near other build in radius 
         }
         return false;// not near other building
     }
-
+   
 
 
 }

@@ -4,31 +4,33 @@ using UnityEngine;
 
 public class AbilitySO : ScriptableObject
 {
-    // Start is called before the first frame update
-    public float cooldown;
-    public float cooldownRemaining;
-    public new string name;
-    public Sprite sprite;
-      public virtual void Init(Transform transform)
-    {
-       
+  // Start is called before the first frame update
+  public float cooldown;
+  public float cooldownRemaining;
+  public new string name;
+  public Sprite sprite;
+  public SkillType skillType;
+  public Skill skill;
+  public virtual void Init(Transform transform)
+  {
 
-    }
-    public virtual void Use(Transform transform)
-    {
 
-    }
-    public virtual void OnBegin()
-    {
+  }
+  public virtual void Use(Transform transform)
+  {
 
-    }
-    public virtual void Update()
-    {
+  }
+  public virtual void OnBegin()
+  {
 
-    }
-    public virtual void OnEnd()
-    {
+  }
+  public virtual void Update()
+  {
 
-    }
+  }
+  public virtual void OnEnd()
+  {
+
+  }
 
 }

@@ -10,7 +10,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     [SerializeField] float slowdownLength = 2f;
     [SerializeField] float slowdownFactor = 0.5f;
     [SerializeField] bool isSlowingdown = false;
-    
+
 
     public static UnityEvent OnMinuteChange = new UnityEvent();
     public static UnityEvent OnHoursChange = new UnityEvent();
@@ -38,7 +38,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
             UpdateSlowdownTime();
         }
         UpdateTime();
-        // Debug.Log("Hours:" + Hours + " Minute: " + Minute);
+        // Debug.Log("Hours:" + Hours + " Minute: " + Minute);  
 
     }
     void UpdateTime()

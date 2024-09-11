@@ -30,7 +30,7 @@ public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
             return;
         }
         Vector2 dir = (enemy.target.position - enemy.transform.position).normalized;
-        enemy.MoveEnemy(dir);
+        enemy.Move(dir);
     }
     public override void DoPhysicUpdate()
     {
