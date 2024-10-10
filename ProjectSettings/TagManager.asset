@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - DestroyAble
   - AllyDamageDealer
+  - Crew
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - crew
   - obsticle
   - trigger
-  - 
-  - 
+  - enemy
+  - Player
   - 
   - 
   - 

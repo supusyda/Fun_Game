@@ -31,10 +31,23 @@ public class Crew : AllyBase
         base.Awake();
 
     }
-    public void MoveInComand(Vector3 dir)
+    public void ChangeStateToComand(Vector3 dir)
     {
         // if (stateMachine.CurrentState == AllyOnComand) return;
         stateMachine.ChangeState(AllyOnComand);
-        
+
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (target != null)
+        {
+
+            Gizmos.DrawLine(transform.position, target.position);
+        }
+        else
+        {
+            Gizmos.DrawLine(transform.position, transform.position);
+
+        }
     }
 }

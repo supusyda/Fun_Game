@@ -21,6 +21,7 @@ public class AllyStateBase : StateBase
     public override void EnterState()
     {
         base.EnterState();
+        allyBase.stateTxt?.SetText(this.GetType().Name);
     }
     public override void ExitState()
     {

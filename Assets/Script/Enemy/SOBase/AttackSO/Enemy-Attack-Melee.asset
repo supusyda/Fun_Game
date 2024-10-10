@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06953d45eeef35e40be0481a4924ca9a, type: 3}
   m_Name: Enemy-Attack-Melee
   m_EditorClassIdentifier: 
+  m_cooldownTime: 1

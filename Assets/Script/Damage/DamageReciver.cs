@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class DamageReciver : MonoBehaviour
@@ -9,7 +10,7 @@ public class DamageReciver : MonoBehaviour
     // Start is called before the first frame update
 
     Rigidbody2D rigidbody2D;
-    [SerializeField] Collider2D collider2D;
+    [SerializeField] Collider2D collider2D;//hurt box
     [SerializeField] HeathBar healthBar;
     [SerializeField] public float hp;
     protected Vector2 knockBackVector;
@@ -39,14 +40,22 @@ public class DamageReciver : MonoBehaviour
         }
         get => isAlive;
     }
-    protected virtual void Start()
+    protected virtual void Awake()
+    {
+        rigidbody2D = transform.parent.GetComponent<Rigidbody2D>();
+        if (collider2D) return;
+        collider2D = transform.parent.GetComponent<Collider2D>();
+    }
+    protected virtual void OnEnable()
     {
         // animator = GetComponent<Animator>();
+        init();
+    }
+    void init()
+    {
         this.Hp = this.maxHp;
-
         this.IsAlive = true;
-        rigidbody2D = transform.parent.GetComponent<Rigidbody2D>();
-        collider2D = transform.parent.GetComponent<Collider2D>();
+        // collider2D.enabled = true;
     }
     protected virtual async void KnockBack(Vector2 knockbackVecter)
     {
@@ -67,8 +76,6 @@ public class DamageReciver : MonoBehaviour
         this.DeduceHp(damage);
         this.hitAnim();
         hitParticle(knockbackVecter);
-
-
     }
 
 
@@ -95,5 +102,23 @@ public class DamageReciver : MonoBehaviour
     protected virtual void Die(Action<string> callback = null)
     {
         Debug.Log("DIE");
+    }
+    protected virtual void Die()
+    {
+        Debug.Log("DIE");
+
+    }
+    public void SetMaxHP(float maxHP)
+    {
+        this.maxHp = maxHP;
+        Debug.Log("maxHP" + maxHP);
+        healthBar.SetHPbarToMaxHP((int)maxHP);
+
+    }
+    public void addHP(float amount)
+    {
+        if (!isAlive) return;
+        this.Hp = math.clamp(this.Hp + amount, 0, maxHp);
+        healthBar?.SetHealth((int)Hp);
     }
 }

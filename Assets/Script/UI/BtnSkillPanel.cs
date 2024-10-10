@@ -30,10 +30,14 @@ public class BtnSkillPanel : MonoBehaviour
     {
         button.ClickFunc = () =>
        {   //unlock skill depend on field skill in inspector
-           //    Debug.Log(playerAbHolder);
-           //    Debug.Log(playerAbHolder.GetSkill(Skill));
+
+           if (Skill == Skill.None) return;
+        
            playerAbHolder.UnLockSkill(AbilityHolder.GetSkill(Skill));
-           if (playerAbHolder.IsUnlockSkill(AbilityHolder.GetSkill(Skill)) == true) transform.Find("Cooldown").gameObject.SetActive(false);
+           if (playerAbHolder.IsUnlockSkill(AbilityHolder.GetSkill(Skill)) == true) { transform.Find("Cooldown").gameObject.SetActive(false);
+               transform.Find("SkillActive").GetComponent<SkillUnlockAnimation>()?.Play();
+           
+           };
 
 
        };

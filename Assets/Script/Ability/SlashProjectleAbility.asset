@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SlashProjectleAbility
   m_EditorClassIdentifier: 
   cooldown: 3
-  cooldownRemaining: 0
   name: "\xE1dsad"
-  sprite: {fileID: 570472823, guid: c97e03d9c3672cc42a3a4d3c99a66430, type: 3}
+  sprite: {fileID: 21300000, guid: d215451093b88954991bf1c87a09c677, type: 3}
+  skillType: 0
+  skill: 1
+  UnlockCondition: 0
   prefab: {fileID: 0}

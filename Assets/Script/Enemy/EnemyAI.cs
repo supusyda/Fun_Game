@@ -175,7 +175,7 @@ public class EnemyAI : MonoBehaviour
         CurrentState = EnemyState.Roaming;
         this.isInvincible = false;
     }
-    private void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
 
         // if (!GameManager.Instance.DEBUG) return;

@@ -13,11 +13,23 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     public float speed { get; set; } = 1f;
     public bool isArgo { get; set; }
     public bool isAttackWithInRange { get; set; }
+    [SerializeField] protected Transform SeeTargetIndicator;
     public Transform target;
-
-    public EnemyChasingState enemyChasingState { get; set; }
+    public StateTxt stateTxt;
     public bool isInvicible { get; set; } = false;
     public bool isAttackWithInLongRange { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    [SerializeField] private int cost;
+    public int Cost
+    {
+        get
+        {
+            return cost <= 0 ? 1 : cost;
+        }
+        private set => cost = value;
+    }
+
+    public Vector3 moveDir;
 
     [SerializeField] private EnemyAttackSOBase enemyAttackSOBase;
     [SerializeField] private EnemyChasingSOBase enemyChasingSOBase;
@@ -28,10 +40,11 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     public EnemyRoamingSOBase EnemyRoamingSOBase;
 
 
+    public EnemyChasingState enemyChasingState;
     public EnemyStateMachine enemyStateMachine;
     public EnemyRoamingState enemyRoamingState;
     public EnemyDamageState enemyDamageState;
-    public EnemyStateBase enemyAttackState;
+    public EnemyAttackState enemyAttackState;
 
 
     private void Awake()
@@ -69,10 +82,20 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
         dangerZone = GetComponentInChildren<DangerZone>();
         speed = 1f;
         enemyStateMachine.Init(enemyRoamingState);
+        SeeTargetIndicator.gameObject.SetActive(false);
 
     }
     public void OnDie()
     {
+        setIsArgo(false);
+        setAttackWithInLongRange(false);
+        setAttackWithInRange(false);
+        Move(Vector2.zero);
+        enemyStateMachine.ChangeState(enemyDamageState);
+    }
+    protected void ShowSeeTargetIndicatorUI()
+    {
+        SeeTargetIndicator.gameObject.SetActive(true);
 
     }
     public void CheckForFaceDir(Vector2 dir)
@@ -96,6 +119,7 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     private void Update()
     {
         enemyStateMachine.CurrentEnemyState.FrameUpdate();
+        // Debug.Log(isArgo);
     }
     private void FixedUpdate()
     {
@@ -103,9 +127,12 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     }
     public void Move(Vector2 dir)
     {
-        if (dir == Vector2.zero) return;
+        moveDir = dir;
+        // Debug.Log("" + moveDir);
         Vector2 transVec2 = new Vector2(transform.position.x, transform.position.y);
         RB.MovePosition(transVec2 + dir * (Time.deltaTime * speed));
+        if (dir == Vector2.zero) return;
+
         CheckForFaceDir(dir);
     }
     public void SetSpeed(float speed)
@@ -117,7 +144,7 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
         this.target = target;
     }
     #region AnimationTriggerEvent
-    void AnimationTrigger(AnimationTriggerEvent triggerEvent)
+    public void AnimationTrigger(AnimationTriggerEvent triggerEvent)
     {
         enemyStateMachine.CurrentEnemyState.AnimationTriggerEvent(triggerEvent);
     }
@@ -126,7 +153,11 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     public enum AnimationTriggerEvent
     {
         EnemyDamage,
-        PlayFootStep
+        PlayFootStep,
+        EnableAttackCollider,
+        DisableAttackCollider,
+        BeginExplosive,
+        Shot
     }
     #endregion
     #region Trigger
@@ -134,9 +165,11 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     public void setIsArgo(bool isArgo)
     {
         this.isArgo = isArgo;
+        if (isArgo == true) ShowSeeTargetIndicatorUI();
+
     }
 
-    public void setAttackWithInRange(bool isAttackWithInRange)
+    public  void  setAttackWithInRange(bool isAttackWithInRange)
     {
         this.isAttackWithInRange = isAttackWithInRange;
     }
@@ -154,7 +187,11 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
         }
 
     }
+    public virtual void HandleRangeAttackAttack()
+    {
 
+
+    }
     public IEnumerator invincibleIntime(float time)
     {
         this.isInvicible = true;
@@ -166,13 +203,22 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
 
     public void StartCoroutineInvincibleIntime(float time)
     {
-        if (this.isInvicible) return;
-        StartCoroutine(invincibleIntime(time));
+        // if (this.isInvicible) return;
+        // StartCoroutine(invincibleIntime(time));
     }
 
     public void setAttackWithInLongRange(bool isAttackWithInLongRange)
     {
-        throw new System.NotImplementedException();
+        isAttackWithInRange = isAttackWithInLongRange;
     }
+
     #endregion
+    public bool CheckAnimationStateIsPlaying(string currentAnimationPlay)
+    {
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(currentAnimationPlay) && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+            return true;
+        return false;
+    }
+
 }

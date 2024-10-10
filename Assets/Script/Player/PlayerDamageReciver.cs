@@ -16,8 +16,12 @@ public class PlayerDamageReciver : DamageReciver
     public override void TakeDamage(float damage, Vector2 knockbackVecter)
     {
         base.TakeDamage(damage, knockbackVecter);
-        // TimeManager.Instance.SlowDownTime();
+        float magnitude = .5f;
+        float durration = .5f;
+        TimeManager.Instance.SlowDownTime();
         PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.GetHit);
+        EventDefine.ShakeCamera?.Invoke(durration, magnitude);
+
     }
     protected override void hitParticle(Vector2 particleDir)
     {
@@ -35,8 +39,7 @@ public class PlayerDamageReciver : DamageReciver
 
         transform.parent.Find("Model").GetComponent<SpriteRenderer>().DOFade(0, 1).onComplete += () =>
         {
-
-            Destroy(transform.parent.gameObject);
+            transform.parent.Find("Model").GetComponent<SpriteRenderer>().DOFade(1, 0);
         };
     }
 }

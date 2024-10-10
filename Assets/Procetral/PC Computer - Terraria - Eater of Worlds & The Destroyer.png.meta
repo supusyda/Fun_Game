@@ -1,0 +1,1006 @@
+fileFormatVersion: 2
+guid: 284eba73e6322684fb8f578d7e196ebb
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 214
+        width: 46
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2742d0fc36a73ea4cba96b7b21c2906d
+      internalID: -1406457849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 255
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c56c73ee8320974b8a4eddd76bd5072
+      internalID: -1209014449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_2
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 228
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f877bf865a828499c7e730c8ecceed
+      internalID: -1582401547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_3
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 224
+        width: 44
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ef4db0e0b18795478ffef81defba1d6
+      internalID: -1153641595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_4
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 210
+        width: 46
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814ac507fd661864786370bb08e60add
+      internalID: -820590580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_5
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 241
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93e34cc338529d648b9a09995dbc9bd9
+      internalID: 444960715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 162
+        width: 42
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e316ef8de51082e41816842f289cb52c
+      internalID: -1019891257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_7
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 153
+        width: 26
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a4945b525ec284babb635fc11931a5
+      internalID: -197215651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_8
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 152
+        width: 26
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae115141fcc24df479a373667d9a3044
+      internalID: 913337873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_9
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 157
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f20690bdca39cfe4ea7af1aa844c130c
+      internalID: 876236673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_10
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 157
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d0c341d38604af428acf6b8620d3f59
+      internalID: 575867607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_11
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 90
+        width: 42
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 459c398074e00ec4cb13ae02ac0e09f4
+      internalID: 1721057557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_12
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 96
+        width: 28
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf143c8d0aeb6d4aaadfa4102e2f82f
+      internalID: -1135794325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_13
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 80
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f703c5af7ab884bafcf58ffb8f25ab
+      internalID: 973694039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_14
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 101
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01748665e4185ce4cbe5f6b39e96b3e3
+      internalID: 672507035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_15
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 31
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc0ae83f9437be4dac119fc9b1c0d21
+      internalID: 1707130677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_16
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 31
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7c6c049f9ce2eb46ab916d5a7108e20
+      internalID: -1729184345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_17
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 57
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a36d05f732cb34cbdd88b4293359f2
+      internalID: 381045619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_18
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 57
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5181418c342267e48a931a3411b5ae66
+      internalID: 897753611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_19
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 57
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a2d5826babb29043b0b2b3f51220d91
+      internalID: 1499869974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_20
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 57
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3763597ea1e82b479d8484f9710f82a
+      internalID: 1572319611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_21
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 57
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 377fc8b3d6f13c1419d96952336bf4bc
+      internalID: 1014561204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_22
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 57
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e71e8f9a54136f439593eb51d61547b
+      internalID: -1768713018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_23
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 57
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d59805f94e2ab42b63cbd5a4148777
+      internalID: 1212856449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_24
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 31
+        width: 38
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1817ceceeffcd644a6fd19846f0583f
+      internalID: -519703513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_25
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfe60340610be8e46a142be1096c396d
+      internalID: -909160207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_26
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5052361befa744c80ee41e7438cae9
+      internalID: -1682417940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_27
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b450c8f050a657b4986e5ff28751d645
+      internalID: -337990089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_28
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20eac3fbad36bad43a793e6f7d5f5108
+      internalID: -2127642544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_29
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ca60b57e057ab5449e1c322ce59e053
+      internalID: 1416194989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_30
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e88e116be6fede4f8212880a4127b67
+      internalID: 102435426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_31
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2a1a7f330e9d734e917f237813cfa58
+      internalID: 443764386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_32
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 41
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed54b976775b6444296ec0fb337eb6f1
+      internalID: -172835312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_33
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 25
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e558598b1bb4247a6a4a82c76f829b
+      internalID: 1048659592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_34
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 25
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82fff366f3fa39241a0d04e383c4bef6
+      internalID: 1102460378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_35
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 25
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deb76c13ecd3f524f9ad8a451f5a7088
+      internalID: -309601723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_36
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 25
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90bfe15e3084633419ebd78cd9cc01a8
+      internalID: 1556183358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_37
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 25
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31049cc3b081f0a4d8ba27755831b2d5
+      internalID: 429039304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC Computer - Terraria - Eater of Worlds & The Destroyer_38
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 25
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fe71116f49226748a3ad8958da8a418
+      internalID: 561528845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_0: -1406457849
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_1: -1209014449
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_10: 575867607
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_11: 1721057557
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_12: -1135794325
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_13: 973694039
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_14: 672507035
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_15: 1707130677
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_16: -1729184345
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_17: 381045619
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_18: 897753611
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_19: 1499869974
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_2: -1582401547
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_20: 1572319611
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_21: 1014561204
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_22: -1768713018
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_23: 1212856449
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_24: -519703513
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_25: -909160207
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_26: -1682417940
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_27: -337990089
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_28: -2127642544
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_29: 1416194989
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_3: -1153641595
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_30: 102435426
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_31: 443764386
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_32: -172835312
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_33: 1048659592
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_34: 1102460378
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_35: -309601723
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_36: 1556183358
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_37: 429039304
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_38: 561528845
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_4: -820590580
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_5: 444960715
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_6: -1019891257
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_7: -197215651
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_8: 913337873
+      PC Computer - Terraria - Eater of Worlds & The Destroyer_9: 876236673
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

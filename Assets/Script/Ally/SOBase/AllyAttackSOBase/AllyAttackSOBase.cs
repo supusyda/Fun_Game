@@ -6,6 +6,7 @@ public class AllyAttackSOBase : StateSOBase
 {
     // Start is called before the first frame update
     AllyBase ally;
+    [SerializeField] bool _isRangeAttack;
 
     public float attackCooldown = 1f;
     public float attackCooldownTimer = 0f;
@@ -18,7 +19,7 @@ public class AllyAttackSOBase : StateSOBase
     }
     override public void DoEnterState()
     {
-        Debug.Log("djkádínadjsađạnn");
+
         base.DoEnterState();
         ally.animator.Play("Attack");
         // this.attackCooldownTimer = 0f;
@@ -31,17 +32,19 @@ public class AllyAttackSOBase : StateSOBase
     override public void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-        if (ally.isAttackWithInLongRange != true && !CheckAnimationStateIsPlaying("Attack")) { ally.stateMachine.ChangeState(ally.allyIdleState); return; };
-
-        this.attackCooldownTimer += Time.deltaTime;
-        if (!CheckAnimationStateIsPlaying("Attack"))
+        if (ally.isAttackWithInLongRange != true && !CheckAnimationStateIsPlaying("Attack"))
         {
-            ally.animator.Play("Idle");
+            ally.stateMachine.ChangeState(ally.allyIdleState); return;
+        };
 
+        if (!ally.isAttackWithInRange && !CheckAnimationStateIsPlaying("Attack"))
+        {
+            ally.stateMachine.ChangeState(ally.allyIdleState);
+
+            return;
         }
+        this.attackCooldownTimer += Time.deltaTime;
         if (this.attackCooldownTimer < this.attackCooldown) return;
-
-
         ally.animator.Play("Attack");
         this.attackCooldownTimer = 0f;
 

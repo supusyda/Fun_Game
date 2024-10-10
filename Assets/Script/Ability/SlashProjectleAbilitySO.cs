@@ -8,12 +8,14 @@ public class SlashProjectleAbilitySO : AbilitySO
     Transform transform;
     GameObject gameObject;
     public Transform prefab;
+
+
     public override void Init(Transform transform)
     {
+        base.Init(transform);
         this.transform = transform;
-
-
     }
+
     public override void Use(Transform transform)
     {
         transform.GetComponentInParent<Shooter>().BeginShoot();

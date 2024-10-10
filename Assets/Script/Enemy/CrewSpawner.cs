@@ -86,11 +86,5 @@ public class CrewSpawner : Spawn
         enemy.gameObject.SetActive(true);
 
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            SpawnCrewAroundPlayer();
-        }
-    }
+
 }

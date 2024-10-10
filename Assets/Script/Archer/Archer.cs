@@ -6,7 +6,7 @@ public class Archer : AllyBase
 {
     // Shooter shooter { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     Shooter shooter { get; set; }
-    private void Awake()
+    private  void Awake()
     {
         shooter = GetComponent<Shooter>();
     }

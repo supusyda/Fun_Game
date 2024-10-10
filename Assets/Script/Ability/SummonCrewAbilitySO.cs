@@ -8,12 +8,6 @@ public class SummonCrewAbilitySO : AbilitySO
     Transform transform;
     GameObject gameObject;
     public Transform prefab;
-    public override void Init(Transform transform)
-    {
-        this.transform = transform;
-
-
-    }
     public override void Use(Transform transform)
     {
 

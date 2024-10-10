@@ -14,4 +14,8 @@ public static class EventDefine
 
 
     public static UnityEvent<AbilityHolder> abiHolderRef = new();
+    public static UnityEvent<float, float> ShakeCamera = new();
+    private static UnityEvent onEnemyDie = new();
+    public static UnityEvent OnEnemyDie { get => onEnemyDie; }
+
 }

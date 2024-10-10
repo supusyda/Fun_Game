@@ -10,12 +10,13 @@ public class EnemyDamageDealer : DamageDealer
     
     protected override void OnTriggerEnter2D(Collider2D other)
     {
+       
         if (other.CompareTag("Enemy")) return;
         base.OnTriggerEnter2D(other);
     }
     public void onHittingTarget(DamageReciver target)
     {
-
+        
         if (target)
         {
             // CharacterEvent.dealDamage

@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DG.Tweening;
-using UnityEditor;
-using UnityEditor.Tilemaps;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -18,18 +17,19 @@ public class PlayerMovement : MonoBehaviour
 
     private bool _isFlip = false;
     private bool _isLockMoving = false;
-
     private bool isInFlipAnim = false;
+    private float currentAccelerate = 0;
+    private float actualMovementSpeed = 0;
+    public float timeToMaxMovementSpeed = 1;
 
     [SerializeField] private float dashCDTimer = 0;
+   [SerializeField] private float moveSpeed = 1f;
 
-    float moveSpeed = 1f;
 
-
-    private bool IsFlip
+    public bool IsFlip
     {
         get => _isFlip;
-        set
+        private set
         {
             _isFlip = value;
             isInFlipAnim = true;
@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     void flipPlayer()
     {
 
-
+        // PlayerCtr.ChangeAnimateState()
         if (isInFlipAnim == true) return;
         if (isLeftOfPlayer() && !IsFlip)
         {
@@ -103,9 +103,20 @@ public class PlayerMovement : MonoBehaviour
         flipPlayer();
         if (moveDirection.x != 0 || moveDirection.y != 0) PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Moving);
         else PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Idle);
-        if (PlayerCtr.CurrentState != PlayerCtr.PlayerState.Moving) return;
-        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + moveDirection * (Time.deltaTime * moveSpeed));
+        if (PlayerCtr.CurrentState != PlayerCtr.PlayerState.Moving) { ResetAcitalMoveSpeed(); return; }
+        currentAccelerate += Time.deltaTime;
 
+        actualMovementSpeed = math.clamp(Mathf.Lerp(actualMovementSpeed, moveSpeed, currentAccelerate / timeToMaxMovementSpeed), 0, moveSpeed);
+        // Debug.Log(actualMovementSpeed);
+        // float actualMovementSpeed = currentAccelerate
+        rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + moveDirection * (Time.deltaTime * actualMovementSpeed));
+
+    }
+    void ResetAcitalMoveSpeed()
+    {
+        currentAccelerate = 0;
+
+        actualMovementSpeed = 0;
     }
     async void Dash()
     {   //
@@ -120,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         //dash and lock movement
         PlayerCtr.Trail.gameObject.SetActive(true);
         PlayerCtr.Rb2D.AddForce(dashDir, ForceMode2D.Impulse);
-        
+
         _isLockMoving = true;
         await Task.Delay(500);
         PlayerCtr.Trail.gameObject.SetActive(false);
@@ -128,12 +139,13 @@ public class PlayerMovement : MonoBehaviour
         PlayerCtr.Rb2D.velocity = Vector3.zero;
         _isLockMoving = false;
     }
+
     void SpawnDustTrailWhenMoving()
     {
         if (PlayerCtr.CurrentState != PlayerCtr.PlayerState.Moving) return;
 
         Vector3 offSetSpawnPos = new Vector3(transform.position.x, transform.position.y - 0.3f, 0);
-        ParticalSpawner.Instance.SpawnThing(offSetSpawnPos, Quaternion.identity, ParticalSpawner.Instance.DUST_TRAIL_PARTICLE).gameObject.SetActive(true);
+        // ParticalSpawner.Instance.SpawnThing(offSetSpawnPos, Quaternion.identity, ParticalSpawner.Instance.DUST_TRAIL_PARTICLE).gameObject.SetActive(true);
 
     }
     public void LockMovement()
@@ -150,5 +162,9 @@ public class PlayerMovement : MonoBehaviour
         await Task.Delay(time);
         UnLockMovement();
 
+    }
+    public void SetMoveSpeed(float speed)
+    {
+        this.moveSpeed = speed;
     }
 }

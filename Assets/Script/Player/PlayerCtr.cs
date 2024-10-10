@@ -27,6 +27,10 @@ public class PlayerCtr : MonoBehaviour, IClickAble
     public static Transform Trail { get => trail; }
     public static Shooter shooter;
     [SerializeField] static public Level myLevel { get; private set; }
+    public static stat Stat = new(5, 10);
+    public static DamageReciver myHealth;
+    public static PlayerMovement movement;
+    public static float modifiedAttackSpeed;
     public enum PlayerState
     {
         Idle,
@@ -46,7 +50,12 @@ public class PlayerCtr : MonoBehaviour, IClickAble
         trail = transform.Find("Trail");
         shooter = GetComponent<Shooter>();
         myLevel = new();
-        Debug.Log(myLevel);
+        Stat = new(10, 5);//temp stat for now
+        myHealth = GetComponentInChildren<DamageReciver>();
+        movement = GetComponent<PlayerMovement>();
+        modifiedAttackSpeed = 1;
+
+
 
 
     }
@@ -78,11 +87,14 @@ public class PlayerCtr : MonoBehaviour, IClickAble
             case PlayerState.Idle:
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION)) return;
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
+                PlayerCtr.PlayerAnimator.speed = 1f;
+
                 newAnimateState = PlayerDefine.Player_Idle;
                 break;
             case PlayerState.Moving:
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION)) return;
                 if (CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
+                PlayerCtr.PlayerAnimator.speed = 1f;
 
 
                 newAnimateState = PlayerDefine.Player_running;
@@ -96,7 +108,7 @@ public class PlayerCtr : MonoBehaviour, IClickAble
 
                 break;
             case PlayerState.GetHit:
-                PlayerMovement.LockMovementForTime(200);
+                PlayerMovement.LockMovementForTime(500);
                 break;
 
 
@@ -114,4 +126,13 @@ public class PlayerCtr : MonoBehaviour, IClickAble
     {
         EventDefine.OnClickOnPlayer?.Invoke();
     }
+    public static void SetAttackSpeed(float speed)
+    {
+        modifiedAttackSpeed = speed;
+    }
+    public static float getModifedAttackSpeed()
+    {
+        return modifiedAttackSpeed;
+    }
+
 }

@@ -14,7 +14,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
 
     public static UnityEvent OnMinuteChange = new UnityEvent();
     public static UnityEvent OnHoursChange = new UnityEvent();
-    public float minuteToRealTime = 0.1f;
+    public float minuteToRealTime = 0.01f;
     [SerializeField] float timer = 0;
     [SerializeField] public static float Hours { get; private set; }
     [SerializeField] public static float Minute { get; private set; }
@@ -48,8 +48,11 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
         Minute++;
         OnMinuteChange?.Invoke();
         timer = minuteToRealTime;
+        // Debug.Log(Minute);
+
         if (Minute < 60) return;
         Hours++;
+        // Debug.Log(Hours);
         Minute = 0;
         OnHoursChange?.Invoke();
 
@@ -62,7 +65,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     void UpdateSlowdownTime()
     {
         // if (!isSlowingdown) return;
-        Debug.Log(Time.timeScale);
+
         Time.timeScale += 1 / slowdownLength * Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
 
@@ -77,7 +80,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
     public void SlowDownTime()
     {
 
-        Debug.Log("SLOW TIME");
+
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = Time.timeScale * .02f;
         isSlowingdown = true;

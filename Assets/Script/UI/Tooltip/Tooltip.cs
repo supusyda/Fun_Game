@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 [ExecuteInEditMode()]
+
 public class Tooltip : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Text headerField;
-    public Text contentField;
-    public LayoutElement layoutElement;
-    public int characterWrapLimit;
-    public RectTransform rectTransform;
+    [SerializeField] private TMP_Text headerField;
+    [SerializeField] private TMP_Text contentField;
+    [SerializeField] private LayoutElement layoutElement;
+    [SerializeField] private int characterWrapLimit;
+    [SerializeField] public RectTransform rectTransform;
     private void OnEnable()
     {
         // LeanTween.easeInBounce(transform.position, transform.position);

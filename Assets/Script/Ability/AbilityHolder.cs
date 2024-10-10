@@ -8,26 +8,24 @@ public enum AbilityState
 }
 public enum Skill
 {
-  Slash, Summon, PlusHealth1, PlusHealth2, PlusSpeed1, PlusSpeed2
+  None, Slash, Summon, PlusHealth1, PlusHealth2, PlusSpeed1, PlusSpeed2, ArrowTower, TNTTower, PlusAttackSpeed1
 
 }
 public enum SkillType
 {
-  Active, Passive, Stat
+  Active, Passive, Stat, Turret
 }
 public class AbilityHolder : MonoBehaviour
 {
-  // Start is called before the first frame update
+  [Header("Ref")]
   [SerializeField] List<AbilitySO> abilitySOs = new List<AbilitySO>();
-  // [SerializeField] private int[] keyCodeSkill = { 113, 101 };
-  [SerializeField] Ability currentAbility;
-  public static List<Ability> abilitis = new List<Ability>();
-  List<Ability> unLockSkill = new List<Ability>();
+  [Header("Atrubute")]
+
   [SerializeField] private float _skillPointToUnlock = 0;
+  private List<Ability> unLockSkill = new List<Ability>();
+  private List<Ability> unlockedActiveSkill = new List<Ability>();
+  private static List<Ability> abilitis = new List<Ability>();
   private Level playerLevel;
-
-
-
   private void Awake()
   {
     Init();
@@ -45,54 +43,84 @@ public class AbilityHolder : MonoBehaviour
   {
     EventDefine.abiHolderRef.Invoke(this);
     SetUpLevelPlayer();
-
   }
   private void Update()
   {
     UsingSkill();
+    // need improve
     foreach (Ability ability in unLockSkill)
     {
       ability.UpdateCooldown();
     }
   }
-  //check is the skill unlocked
   public bool IsUnlockSkill(Ability skill)
   {
+    //check is the skill unlocked
+
     return unLockSkill.Contains(skill);
   }
   public void UnLockSkill(Ability skill)
   {
-    if (IsUnlockSkill(skill)) return;
-    if (_skillPointToUnlock <= 0) return;
-    unLockSkill.Add(skill);
+    if (IsUnlockSkill(skill)) return;//check skill í unlock
+    if (_skillPointToUnlock <= 0) return;//check skill is enough skill ponit
+    if (!IsFullyMeetUnlockCondition(skill.abilitySO)) return;
+    skill.abilitySO.OnUnlock();
+    // switch (skill.abilitySO.skillType)//depend on skill type has diff way to handle
+    // {
+    //   case SkillType.Stat:
+    //     {
+    //       PlayerCtr.Stat.AddStatByAbility(skill.abilitySO);
+    //       break;
+    //     }
+    //   case SkillType.Active:
+    //     {
+    //       unlockedActiveSkill.Add(skill);                       // fire event to UI to show unlock skill on screen
+    //       break;
+    //     }
+    //   case SkillType.Turret:
+    //     {
+    //       BuildingTypeSelect.onUnlockBuilding.Invoke(skill.abilitySO.skill);
+    //       break;
+    //     }
+    //   default: break;
+    // }
+
+    unLockSkill.Add(skill);// add skill to unlock skill list 
     EventDefine.onAbilityInit2?.Invoke(skill);
-    _skillPointToUnlock--;
+    _skillPointToUnlock--;// minus skill point
   }
 
+  bool IsFullyMeetUnlockCondition(AbilitySO abilitySO)
+  {
+    if (abilitySO.UnlockCondition == Skill.None) return true;//if dont have condition
+    return unLockSkill.Contains(GetSkill(abilitySO.UnlockCondition));// is the skill need to unlock has been unlock
+  }
   void UsingSkill()
   {
     //need improve
     if (Input.GetKeyDown(KeyCode.Space))
     {
-      unLockSkill[0].OnBegin();
+      unlockedActiveSkill[0].OnBegin();
     }
     else if (Input.GetKeyDown(KeyCode.E))
     {
       // if(unLockSkill[1])
-      unLockSkill[1].OnBegin();
+      unlockedActiveSkill.ForEach(a =>
+      {
+        Debug.Log(a);
+      });
+      unlockedActiveSkill[1].OnBegin();
 
     }
   }
   public static Ability GetSkill(Skill skill)
   {
-    Ability tempAb = null;
+
     foreach (Ability ability in abilitis)
     {
       if (ability.abilitySO.skill == skill)
-      {
-        tempAb = ability;
-        return tempAb;
-      }
+
+        return ability;
     }
     Debug.Log("NO ABILITY FOUND");
     return null;
@@ -105,6 +133,10 @@ public class AbilityHolder : MonoBehaviour
     {
       _skillPointToUnlock++;
     });
+  }
+  public void AddSkillToActiveSkill(Skill skill)
+  {
+    unlockedActiveSkill.Add(GetSkill(skill));
   }
 }
 

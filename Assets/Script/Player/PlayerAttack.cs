@@ -40,14 +40,15 @@ public class PlayerAttack : MonoBehaviour
     }
     void Attack()
     {
-        if (attackCoolDownTimer < maxAttackCoolDown)
-        {
+        // if (attackCoolDownTimer < maxAttackCoolDown)
+        // {
+        //     // can perform second attack
+        //     _isComboAttack = true;
 
-            _isComboAttack = true;
-            return;
-        };
-        attackCoolDownTimer = 0;
-        _isComboAttack = false;
+        //     return;
+        // };
+        // attackCoolDownTimer = 0;
+        // _isComboAttack = false;
         PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Attack);  //    animator
 
     }
@@ -55,14 +56,31 @@ public class PlayerAttack : MonoBehaviour
     {
         // PlayerAnimator.GetCurrentAnimatorStateInfo(0);
         yield return new WaitForSeconds(timeAnimationPlay);
-        if (checkIsCanDoComboAttack()) PlayerCtr.PlayerAnimator.Play(PlayerDefine.PLAYER_ATTACK_ANIMATION_2);
+
+        // if (checkIsCanDoComboAttack())
+        // {
+        PlayerCtr.PlayerAnimator.Play(PlayerDefine.PLAYER_ATTACK_ANIMATION_2);
+
+
+
+        // }
+
 
     }
     public void ComboAttack()
     {
         // PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.Attack);
+        //chang the animater play speed when doing attack only
+
+        PlayerCtr.PlayerAnimator.speed = PlayerCtr.getModifedAttackSpeed();
+        if (PlayerCtr.CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION))
+        {
+            StartCoroutine(nextComboAttack(PlayerCtr.PlayerAnimator.GetCurrentAnimatorStateInfo(0).length));
+            return;
+
+        }
         PlayerCtr.PlayerAnimator.Play(PlayerDefine.PLAYER_ATTACK_ANIMATION);
-        StartCoroutine(nextComboAttack(PlayerCtr.PlayerAnimator.GetCurrentAnimatorStateInfo(0).length));
+        
     }
     bool checkIsCanDoComboAttack()
     {

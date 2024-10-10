@@ -5,37 +5,18 @@ using UnityEngine;
 
 public class UpStatAbilitySO : AbilitySO
 {
-    public enum Stat
+    public enum StatType
     {
-        Hp, MovementSpeed
+        Hp, MovementSpeed, AttackSpeed
     }
-    Stat stat;
-    // Start is called before the first frame update
-    Transform transform;
-    GameObject gameObject;
+
+    public UpStatAbilitySO(UpStatAbilitySO upStatAbilitySO)
+    {
+
+    }
+    public int additinalAmout;
+    public StatType statType;
+  
     public Transform prefab;
-    public override void Init(Transform transform)
-    {
-        this.transform = transform;
 
-
-    }
-    public override void Use(Transform transform)
-    {
-        
-
-    }
-    public override void OnBegin()
-    {
-        
-
-    }
-    public override void Update()
-    {
-
-    }
-    public override void OnEnd()
-    {
-
-    }
 }

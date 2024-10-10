@@ -7,7 +7,6 @@ public class DangerZone : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] LineRenderer lineRenderer;
-    private float waveValue = 10;
     private void Awake() {
         lineRenderer = GetComponentInChildren<LineRenderer>();
     }

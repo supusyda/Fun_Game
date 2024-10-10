@@ -5,11 +5,14 @@ using UnityEngine;
 public class CrewIdleStateSOBase : AllyIdleStateSOBase
 {
     Crew crew;
+    // AllyBase allyBase;
 
     public override void Init(AllyBase ally, Transform transform, GameObject gameObject)
     {
         base.Init(ally, transform, gameObject);
         crew = transform.GetComponent<Crew>();
+        // allyBase = new Crew();
+        // allyBase = (Crew)ally;
 
     }
     override public void DoEnterState()
@@ -24,7 +27,7 @@ public class CrewIdleStateSOBase : AllyIdleStateSOBase
     }
     override public void DoFrameUpdate()
     {
-        base.DoFrameUpdate();
+        // base.DoFrameUpdate();
         if (crew.isArgo == true) { crew.stateMachine.ChangeState(crew.AllyChasing); return; }
         if (crew.isAttackWithInLongRange == true || crew.isAttackWithInRange == true) crew.stateMachine.ChangeState(crew.allyAttackState);
     }

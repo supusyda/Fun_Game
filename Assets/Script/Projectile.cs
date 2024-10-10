@@ -90,6 +90,7 @@ public class Projectile : MonoBehaviour
     private float maxMoveSpeed;
     private float trajectoryMaxRelativeHeight;
     private float distanceToTargetToDestroyProjectile = .1f;
+    protected bool _isReachTargetPos = false;
 
     private AnimationCurve trajectoryAnimationCurve;
     private AnimationCurve axisCorrectionAnimationCurve;
@@ -107,6 +108,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         trajectoryStartPoint = transform.position;
+        _isReachTargetPos = false;
     }
     protected virtual void onHitTarget(Transform target)
     {
@@ -120,21 +122,26 @@ public class Projectile : MonoBehaviour
         onHitTarget(other.transform);
 
     }
-    void DestroyMe()
+    protected virtual void DestroyMe()
     {
         ProjectileSpawner.Instance.DespawnOjb(transform);
     }
     private void Update()
     {
-
+        if (_isReachTargetPos) return;
         UpdateProjectilePosition();
 
         if (Vector3.Distance(transform.position, target) < distanceToTargetToDestroyProjectile)
         {
-            Destroy(gameObject);
+            OnReachTargetPos();
+
         }
     }
+    protected virtual void OnReachTargetPos()
+    {
 
+        Destroy(gameObject);
+    }
     private void UpdateProjectilePosition()
     {
         trajectoryRange = target - trajectoryStartPoint;

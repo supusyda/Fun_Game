@@ -6,12 +6,13 @@ public class UnitRTS : MonoBehaviour
 {
     // Start is called before the first frame update
     private Transform selectedOjb;
-    [SerializeField]
+
     public Crew thisUnit;
-    private void Awake()
+    private void OnEnable()
     {
         selectedOjb = transform.Find("Select");
         thisUnit = GetComponent<Crew>();
+        ClearSelect();
     }
     public void ClearSelect()
     {
@@ -21,13 +22,11 @@ public class UnitRTS : MonoBehaviour
     {
         selectedOjb.gameObject.SetActive(true);
     }
-    private void Update()
-    {
 
-    }
     public void SetMoveDir(Vector3 dir)
     {
         // thisUnit.Move(dir);
-        thisUnit.MoveInComand(dir);
+        thisUnit.ChangeStateToComand(dir);
     }
+
 }

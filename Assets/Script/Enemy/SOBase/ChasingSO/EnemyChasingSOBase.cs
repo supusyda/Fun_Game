@@ -13,7 +13,7 @@ public abstract class EnemyChasingSOBase : ScriptableObject
     this.enemy = enemy;
     this.transform = transform;
     this.gameObject = gameObject;
-    this.player = GameObject.FindGameObjectWithTag("Player").transform;
+    this.player = GameObject.FindGameObjectWithTag("Player") ? GameObject.FindGameObjectWithTag("Player").transform : null;
   }
   public virtual void DoEnterState()
   {
@@ -25,12 +25,7 @@ public abstract class EnemyChasingSOBase : ScriptableObject
   }
   public virtual void DoFrameUpdate()
   {
-    if (!enemy.isArgo) { enemy.enemyStateMachine.ChangeState(enemy.enemyRoamingState); return; }
-    if (enemy.isAttackWithInRange)
-    {
-      enemy.enemyStateMachine.ChangeState(enemy.enemyAttackState);
-      return;
-    }
+  
   }
   public virtual void DoPhysicUpdate()
   {
@@ -45,5 +40,8 @@ public abstract class EnemyChasingSOBase : ScriptableObject
 
   }
 
+  public virtual void OnDrawGrizmos()
+  {
 
+  }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 // using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RTSControl : MonoBehaviourSingleton<RTSControl>
 {
@@ -76,9 +77,9 @@ public class RTSControl : MonoBehaviourSingleton<RTSControl>
         targetPos = CodeMonkey.Utils.UtilsClass.GetMouseWorldPosition();
         unitRTs.ForEach(unit =>
         {
-            Debug.Log(unit.thisUnit);
+            // Debug.Log(unit.thisUnit);
 
-            unit.thisUnit.MoveInComand(targetPos);
+            unit.thisUnit.ChangeStateToComand(targetPos);
 
         });
     }

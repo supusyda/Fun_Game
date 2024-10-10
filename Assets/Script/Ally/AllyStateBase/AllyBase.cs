@@ -7,13 +7,17 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
 {
     // Start is called before the first frame update
     public Rigidbody2D RB { get; set; }
-    public bool IsFacingRight { get; set; } = true;
+    public bool IsFacingRight { get; set; } = false;
     public float speed { get; set; }
     public bool isArgo { get; set; }
-    public bool isAttackWithInRange { get; set; }
-    public bool isAttackWithInLongRange { get; set; }
+    [SerializeField] public bool isAttackWithInRange { get; set; }
+    [SerializeField] public bool isAttackWithInLongRange { get; set; }
     public Animator animator { get; set; }
+    public Vector3 moveDir { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public Transform target;
+
+    public StateTxt stateTxt;
     // public 
     [SerializeField] private AllyIdleStateSOBase allyIdleStateSOBase;
     [SerializeField] private AllyAttackSOBase allyAttackSOBase;
@@ -43,11 +47,10 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
         AllyIdleStateSOBase.Init(this, transform, gameObject);
         AllyAttackSOBase.Init(this, transform, gameObject);
 
-
-
-
-
-
+    }
+    private void OnEnable()
+    {
+        IsFacingRight = false;
     }
     void GetAnimator()
     {
@@ -73,6 +76,7 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
     }
     public virtual void CheckForFaceDir(Vector2 dir)
     {
+
         if (IsFacingRight && dir.x < 0f)
         {
             Vector3 rotator = new Vector3(0f, 0f, 0f);
@@ -86,9 +90,10 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
             transform.rotation = Quaternion.Euler(rotator);
             IsFacingRight = !IsFacingRight;
         }
+
     }
 
-    public void HandleAttack()
+    public virtual void HandleRangeAttack()
     {
 
     }
@@ -107,14 +112,20 @@ public class AllyBase : MonoBehaviour, ITriggerCheck, IHandleAttack, IMoveAle
     {
         this.isArgo = isArgo;
     }
-   
+
 
     public void Move(Vector2 dir)
     {
+        CheckForFaceDir(dir);
+
         if (dir == Vector2.zero) return;
 
         Vector2 transVec2 = new Vector2(transform.position.x, transform.position.y);
         RB.MovePosition(transVec2 + dir * (Time.deltaTime * speed));
-        CheckForFaceDir(dir);
+    }
+
+    public void HandleAttack()
+    {
+        throw new System.NotImplementedException();
     }
 }

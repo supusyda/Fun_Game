@@ -12,7 +12,7 @@ public class AllyChasingSOBase : StateSOBase
     Path path;
     int currentNode = 0;
     bool endOfPath = false;
-    float nextWayponitDistant = .2f;
+    float nextWayponitDistant = .1f;
 
     public virtual void Init(AllyBase ally, Transform transform, GameObject gameObject)
     {
@@ -31,7 +31,8 @@ public class AllyChasingSOBase : StateSOBase
         endOfPath = false;
 
         // randTargetPos = RTSControl.Instance.targetPos + (Vector3)Random.insideUnitCircle.normalized;
-        seeker.StartPath(ally.RB.position, ally.target.position, onCompleCreatePath);
+        Vector3 newTargetoffset = new Vector3(ally.target.position.x + 0, ally.target.position.y, 0);
+        seeker.StartPath(ally.RB.position, newTargetoffset, onCompleCreatePath);
         // this.attackCooldownTimer = 0f;
 
     }
@@ -47,15 +48,24 @@ public class AllyChasingSOBase : StateSOBase
     override public void DoExitState()
     {
         ally.speed = 2;
-
+        path = null;
         base.DoExitState();
     }
     override public void DoFrameUpdate()
     {
-        Debug.Log("CHASING");
+
         base.DoFrameUpdate();
-        Debug.Log(ally.target.position);
-        // if (ally.isAttackWithInLongRange != true && !CheckAnimationStateIsPlaying("Attack")) { ally.stateMachine.ChangeState(ally.allyIdleState); return; };
+
+        if (ally.isAttackWithInRange == true)
+        {
+            ally.stateMachine.ChangeState(ally.allyAttackState);
+            return;
+        }// enemy in range for attack chnage to attack state
+        if (ally.isArgo == false)
+        {
+            ally.stateMachine.ChangeState(ally.allyIdleState);
+            return;
+        }
         if (path == null) return;
         if (endOfPath == true) { OnReachTarget(); return; }
         if (!endOfPath && currentNode >= path.vectorPath.Count)

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ability
 {
     // Start is called before the first frame update
-    Transform transform;
+    
     public AbilitySO abilitySO;
     float timeCooldown;
     float timeCooldownRemaining;
@@ -21,8 +21,10 @@ public class Ability
     public void OnBegin()
     {
         if (abilityState != AbilityState.ready) return;
+
         this.abilitySO.OnBegin();
         this.timeCooldownRemaining = 0;
+
         abilityState = AbilityState.cooldown;
         EventDefine.onAbilityUse?.Invoke(abilitySO);
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BuildingTypeSelect : MonoBehaviour
@@ -9,6 +10,11 @@ public class BuildingTypeSelect : MonoBehaviour
     [SerializeField] List<BuildingSO> buildingSOs = new List<BuildingSO>();
     [SerializeField] Transform buidingTemplate;
     [SerializeField] Dictionary<BuildingSO, Transform> buidingBtnDic;
+    public static UnityEvent<Skill> onUnlockBuilding = new();
+    private void OnEnable()
+    {
+        onUnlockBuilding.AddListener(ActiveUnlockBuiliding);
+    }
     private void Start()
     {
         if (buildingSOs.Count == 0) return;
@@ -30,13 +36,30 @@ public class BuildingTypeSelect : MonoBehaviour
                 if (BuildingManager.Instance.selectedBuilding == null) return;
                 buidingUI.Find("SelectecdBG").gameObject.SetActive(true);
             });
-         
+            buidingUI.gameObject.SetActive(false);
             //add to the dictionary buidingBtndic[item] = buidingUI
             buidingBtnDic.Add(item, buidingUI);
 
         }
         // set all the select back ground to inActive
         UpdateSelectedBuildingVisual();
+    }
+    void ActiveUnlockBuiliding(Skill towerID)
+    {
+        Transform buildingUI = GetBuildingUIBySkill(towerID);
+        if (buildingUI == null) return;
+        buildingUI.gameObject.SetActive(true);
+
+    }
+    Transform GetBuildingUIBySkill(Skill towerID)
+    {
+
+        foreach (BuildingSO buildSO in buidingBtnDic.Keys)
+        {
+            if (buildSO.towerID != towerID) continue;
+            return buidingBtnDic[buildSO];
+        }
+        return null;
     }
     public void UpdateSelectedBuildingVisual()
     {

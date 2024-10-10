@@ -7,6 +7,9 @@ public class ProjectileSpawner : Spawn
     // Start is called before the first frame update
     public string ARROW = "Arrow";
     public string SLASH = "Slash";
+    public string SLASH_EFFECT = "SlashEffect";
+
+    
 
     private ProjectileSpawner instance;
     static public ProjectileSpawner Instance;

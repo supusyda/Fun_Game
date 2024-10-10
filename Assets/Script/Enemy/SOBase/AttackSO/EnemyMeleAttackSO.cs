@@ -6,6 +6,9 @@ using UnityEngine;
 public class EnemyMeleAttackSO : EnemyAttackSOBase
 {
     // Start is called before the first frame update
+    [SerializeField] private float m_cooldownTime;
+    private float m_cooldownTimerTickDown;
+
     override public void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
     {
         base.Init(enemy, transform, gameObject);
@@ -13,7 +16,10 @@ public class EnemyMeleAttackSO : EnemyAttackSOBase
     override public void DoEnterState()
     {
         base.DoEnterState();
-        enemy.animator.Play("Attack");
+        
+        enemy.animator.Play("Attack", 0);
+        m_cooldownTimerTickDown = m_cooldownTime;
+        
 
     }
     public override void DoAnimationTriggerEvent(EnemyBase.AnimationTriggerEvent triggerEvent)
@@ -26,9 +32,17 @@ public class EnemyMeleAttackSO : EnemyAttackSOBase
     }
     override async public void DoFrameUpdate()
     {
-        base.DoFrameUpdate();
-        enemy.Move(Vector2.zero);
-        await Task.Delay(1000);
+        // base.DoFrameUpdate();
+        // enemy.Move(Vector2.zero);
+        if (enemy.CheckAnimationStateIsPlaying("Attack")) return;
+        if (m_cooldownTimerTickDown > 0)
+        {
+            enemy.animator.Play("Idle", 0);
+            m_cooldownTimerTickDown -= Time.deltaTime;
+            return;
+        }
+
+
 
         if (!enemy.isAttackWithInRange && !enemy.isArgo)
         {
@@ -40,11 +54,18 @@ public class EnemyMeleAttackSO : EnemyAttackSOBase
             enemy.enemyStateMachine.ChangeState(enemy.enemyChasingState);
             return;
         }
+       
+        enemy.enemyStateMachine.ChangeState(enemy.enemyAttackState);
+
     }
 
 
     override public void DoPhysicUpdate()
     {
         base.DoPhysicUpdate();
+    }
+    public override void OnDrawGrizmos()
+    {
+        base.OnDrawGrizmos();
     }
 }

@@ -13,7 +13,9 @@ public class EnemyAttackSOBase : ScriptableObject
         this.enemy = enemy;
         this.transform = transform;
         this.gameObject = gameObject;
-        this.player = GameObject.FindGameObjectWithTag("Player").transform;
+        // this.player = GameObject.FindGameObjectWithTag("Player").transform;
+        this.player = GameObject.FindGameObjectWithTag("Player") ? GameObject.FindGameObjectWithTag("Player").transform : null;
+
     }
     public virtual void DoEnterState()
     {
@@ -25,7 +27,7 @@ public class EnemyAttackSOBase : ScriptableObject
     }
     public virtual void DoFrameUpdate()
     {
-       
+
     }
     public virtual void DoPhysicUpdate()
     {
@@ -40,5 +42,8 @@ public class EnemyAttackSOBase : ScriptableObject
 
     }
 
-
+    public virtual void OnDrawGrizmos()
+    {
+        
+    }
 }

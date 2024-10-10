@@ -14,19 +14,22 @@ public class TriggerAttackInRangeEnemy : TriggerAttackInRange
     }
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-        base.OnTriggerEnter2D(other);
-        if (other.CompareTag("Player"))
+       
+        if (other.CompareTag("Player") || other.CompareTag("Crew"))
         {
             enemy.setAttackWithInRange(true);
+            // enemy.SetTarget(other.transform);
 
         }
     }
     protected override void OnTriggerExit2D(Collider2D other)
     {
-        base.OnTriggerExit2D(other);
-        if (other.CompareTag("Player"))
+       
+        if (other.CompareTag("Player") || other.CompareTag("Crew"))
         {
             enemy.setAttackWithInRange(false);
+            // enemy.SetTarget(null);
+
         }
     }
 }

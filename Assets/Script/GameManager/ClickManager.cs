@@ -20,6 +20,7 @@ public class ClickManager : MonoBehaviour
             Physics2D.Raycast(mousePos, Vector2.zero, contactFilter, results, distance);
             if (results.Count <= 0) return;
             RaycastHit2D raycastHit2Dhit = results[0];
+
             if (raycastHit2Dhit == null) return;
             // Debug.Log(raycastHit2Dhit.transform.name + "asdsad");
             IClickAble clickAble = raycastHit2Dhit.collider.GetComponent<IClickAble>();

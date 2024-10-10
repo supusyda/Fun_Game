@@ -16,7 +16,7 @@ public class AllyIdleState : AllyStateBase
     override public void EnterState()
     {
         base.EnterState();
-        Debug.Log("ENTER STATE IDLE");
+        
         allyBase.AllyIdleStateSOBase.DoEnterState();
     }
     override public void FrameUpdate()

@@ -78,4 +78,10 @@ public class Shooter : MonoBehaviour
         }
         this.target = null;
     }
+    public void SetSingleTarget(Transform target)
+    {
+        if (target == null) return;
+        this.target = target;
+
+    }
 }

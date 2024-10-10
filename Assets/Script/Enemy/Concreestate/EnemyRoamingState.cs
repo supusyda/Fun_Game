@@ -8,12 +8,12 @@ public class EnemyRoamingState : EnemyStateBase
     public EnemyRoamingState(EnemyBase enemyBase, EnemyStateMachine enemyStateMachine) : base(enemyBase, enemyStateMachine)
     {
 
-
+        
     }
     public override void EnterState()
     {
         base.EnterState();
-       
+
         enemyBase.EnemyRoamingSOBase.DoEnterState();
 
     }
@@ -31,10 +31,14 @@ public class EnemyRoamingState : EnemyStateBase
     public override void AnimationTriggerEvent(EnemyBase.AnimationTriggerEvent triggerEvent)
     {
         base.AnimationTriggerEvent(triggerEvent);
+        enemyBase.EnemyRoamingSOBase.DoAnimationTriggerEvent(triggerEvent);
     }
     public override void ExitState()
     {
         base.ExitState();
     }
-
+    public virtual void OnDrawGrizmos()
+    {
+        // base.OnDrawGrizmos();
+    }
 }

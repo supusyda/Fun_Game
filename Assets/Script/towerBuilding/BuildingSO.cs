@@ -10,4 +10,5 @@ public class BuildingSO : ScriptableObject
     public Transform prefab;
     public Sprite image;
     public int price;
+    public Skill towerID;
 }

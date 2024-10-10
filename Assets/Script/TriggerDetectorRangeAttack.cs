@@ -29,7 +29,12 @@ public class TargetDetector : TriggerAttackInRange
         if (other.CompareTag("Enemy"))
         {
             targets.Remove(other.transform);
-            // shooter.SetTarget(targets);
+            if (targets.Count > 0)
+            {
+                shooter.SetTarget(targets);
+                return;
+
+            };
             allyBase.setAttackWithInLongRange(false);
 
         }

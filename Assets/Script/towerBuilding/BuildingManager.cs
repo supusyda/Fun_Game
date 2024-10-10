@@ -54,8 +54,7 @@ public class BuildingManager : MonoBehaviourSingleton<BuildingManager>
         // checking the buiding is over lap other building 
         bool isOverLapOtherBuilding = Physics2D.OverlapBox(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0, layerMask) != null;
 
-        Collider2D abc = Physics2D.OverlapBox(position + (Vector3)boxCollider2D.offset, boxCollider2D.size, 0, layerMask);
-        Debug.Log(abc);
+       
 
 
 

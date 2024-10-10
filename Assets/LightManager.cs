@@ -11,7 +11,7 @@ public class LightManager : MonoBehaviour
     private bool isSwitching = false;
     private int _timeToTurnNight = 19;
     private int _timeToTurnMorning = 5;
-    [SerializeField] private float timeToSwitch = 5;
+    [SerializeField] private float timeToSwitch ;
     [SerializeField] private Transform _twenkel;
 
     private void Start()

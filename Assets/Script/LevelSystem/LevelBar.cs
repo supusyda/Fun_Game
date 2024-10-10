@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 public class LevelBar : MonoBehaviour
 {
     // Start is called before the first frame update
     public static UnityEvent<Level> OnCompleteLoadPlayerLevel = new();
-    [SerializeField] Text levelText;
+    [SerializeField] TMP_Text levelText;
     [SerializeField] Image expSlider;
     Level levelSystem;
     private void Awake()
@@ -44,7 +45,7 @@ public class LevelBar : MonoBehaviour
     }
     public void OnExpChangeListen()
     {
-        Debug.Log("Update exp");
+
         SetEXPSilder(levelSystem.GetEXP());
 
     }

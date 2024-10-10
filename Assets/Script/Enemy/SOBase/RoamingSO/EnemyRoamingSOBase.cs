@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyRoamingSOBase : ScriptableObject
 {
-  protected  EnemyBase enemy;
+    protected EnemyBase enemy;
     Transform transform;
     GameObject gameObject;
-    protected Transform player;
+
     public virtual void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
     {
         this.enemy = enemy;
         this.transform = transform;
         this.gameObject = gameObject;
-        this.player = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
     public virtual void DoEnterState()
     {
@@ -25,7 +25,7 @@ public class EnemyRoamingSOBase : ScriptableObject
     }
     public virtual void DoFrameUpdate()
     {
-        if (enemy.isArgo) enemy.enemyStateMachine.ChangeState(enemy.enemyChasingState);
+        // if (enemy.isArgo == true) { enemy.enemyStateMachine.ChangeState(enemy.enemyChasingState); return; };
     }
     public virtual void DoPhysicUpdate()
     {
@@ -39,6 +39,9 @@ public class EnemyRoamingSOBase : ScriptableObject
     {
 
     }
-
+    public virtual void OnDrawGrizmos()
+    {
+        // base.OnDrawGrizmos();
+    }
 
 }

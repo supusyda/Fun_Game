@@ -12,14 +12,14 @@ public class DamageDealer : MonoBehaviour
     public Collider2D hitBox;
     private void Awake()
     {
-        // hitBox = GetComponent<Collider2D>();
+        // hitBox = transform.parent.parent.GetComponent<Collider2D>();
     }
 
     // Start is called before the first frame update
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-
+        
         onHittingEnemy(other.GetComponentInChildren<DamageReciver>());
     }
     public virtual void onHittingEnemy(DamageReciver enemy)

@@ -18,6 +18,8 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     }
     override public void DoEnterState()
     {
+        // Debug.Log("ENEMY ENTER ROAM");
+
         base.DoEnterState();
         enemy.animator.Play("Run");
         InitRandRoaming();
@@ -32,6 +34,7 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     {
         base.DoFrameUpdate();
         Roaming();
+        if (enemy.isArgo == true) enemy.enemyStateMachine.ChangeState(enemy.enemyChasingState);
     }
     override public void DoPhysicUpdate()
     {
@@ -48,13 +51,17 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     private void Roaming()
     {
         enemy.Move(randDir);
-        if (Vector3.Distance(enemy.transform.position, targetPosition) <= 1f || Vector3.Distance(enemy.transform.position, startedPos) >= maxRoamingRange)
+        if (Vector3.Distance(enemy.transform.position, targetPosition) <= 1f)
         {
             // reach rand roaming pos 
             //if this object reach the randPos or move pass the maxRoamingRange then
             //cal rand roaming pos again
             InitRandRoaming();
         }
+        // else if(Vector3.Distance(enemy.transform.position, startedPos) >= maxRoamingRange)
+        // {
+
+        // }
     }
     Vector3 GetRoamingPosition()
     {
@@ -73,5 +80,10 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
         // Debug.Log("targetPosition" + targetPosition);
         if (targetPosition == null) return;
         randDir = (targetPosition - enemy.transform.position).normalized;
+
+    }
+    public override void OnDrawGrizmos()
+    {
+        base.OnDrawGrizmos();
     }
 }

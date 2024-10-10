@@ -35,7 +35,7 @@ public class Level
 
         while (!IsMaxLevel() && exp >= GetEXPToNextLvl(level))
         {
-            Debug.Log("cc");
+            
             exp = exp - GetEXPToNextLvl(level);
             level++;
 

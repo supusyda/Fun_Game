@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDamageState : EnemyStateBase
 {
-    float timeInvincible = 1f;
+    float timeInvincible = .4f;
     float timer = 0;
     public EnemyDamageState(EnemyBase enemyBase, EnemyStateMachine enemyStateMachine) : base(enemyBase, enemyStateMachine)
     {
@@ -38,7 +38,7 @@ public class EnemyDamageState : EnemyStateBase
     override public void ExitState()
     {
         base.ExitState();
-                timer = 0;
+        timer = 0;
     }
     // Start is called before the first frame update
 

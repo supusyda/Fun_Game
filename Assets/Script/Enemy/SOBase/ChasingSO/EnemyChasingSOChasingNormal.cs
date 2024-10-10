@@ -4,16 +4,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy-Chasing-Normal", menuName = "Enemy/Chasing/Normal")]
 public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
 {
+    Avoid avoid;
     public float chasingSpeed;
     override public void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
     {
         base.Init(enemy, transform, gameObject);
+
     }
     public override void DoEnterState()
     {
-        base.DoEnterState();
-        enemy.animator.Play("Run");
 
+        base.DoEnterState();
+        enemy.animator.CrossFade("Run", 0);
+        avoid = transform.GetComponentInChildren<Avoid>();
         enemy.SetSpeed(chasingSpeed);
 
     }
@@ -24,13 +27,25 @@ public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
     public override void DoFrameUpdate()
     {
         base.DoFrameUpdate();
-        if (enemy.target == null)
+        if (!enemy.isArgo) { enemy.enemyStateMachine.ChangeState(enemy.enemyRoamingState); return; }
+        if (enemy.isAttackWithInRange)
         {
-            enemy.enemyStateMachine.ChangeState(enemy.enemyRoamingState);
+            enemy.enemyStateMachine.ChangeState(enemy.enemyAttackState);
             return;
         }
+
         Vector2 dir = (enemy.target.position - enemy.transform.position).normalized;
-        enemy.Move(dir);
+        if (avoid)
+        {
+
+            dir = dir + (Vector2)avoid.GetAvoidDir();
+            // Debug.Log("(Vector2)avoid.GetAvoidDir()" + (Vector2)avoid.GetAvoidDir());
+
+        }
+
+
+        enemy.Move(dir.normalized);
+
     }
     public override void DoPhysicUpdate()
     {
@@ -45,6 +60,9 @@ public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
     {
         base.ResetValue();
     }
-
+    public override void OnDrawGrizmos()
+    {
+        base.OnDrawGrizmos();
+    }
 
 }
