@@ -8,7 +8,7 @@ public class Level
 {
     public UnityEvent OnExpChange = new();
     public UnityEvent OnLevelChange = new();
-    private static readonly int[] expPerlevel = new[] { 100, 200, 300, 400 };
+    private static readonly int[] expPerlevel = new[] { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000 };
     public int level;
     public float exp;
     public int skillPoint;
@@ -26,16 +26,13 @@ public class Level
     }
     public void AddExp(int amount)
     {
-
-
-
         if (IsMaxLevel()) return;
         exp += amount;
 
 
         while (!IsMaxLevel() && exp >= GetEXPToNextLvl(level))
         {
-            
+
             exp = exp - GetEXPToNextLvl(level);
             level++;
 

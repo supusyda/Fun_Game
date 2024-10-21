@@ -37,17 +37,5 @@ public class Crew : AllyBase
         stateMachine.ChangeState(AllyOnComand);
 
     }
-    private void OnDrawGizmosSelected()
-    {
-        if (target != null)
-        {
 
-            Gizmos.DrawLine(transform.position, target.position);
-        }
-        else
-        {
-            Gizmos.DrawLine(transform.position, transform.position);
-
-        }
-    }
 }

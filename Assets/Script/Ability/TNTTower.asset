@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: TNTTower
   m_EditorClassIdentifier: 
   cooldown: 0
-  name: 
+  skillName: TNT Tower
+  content: ' unlock power to build tnt tower'
+  skillPoint: 1
   sprite: {fileID: 21300000, guid: 96d546e5c90ea6b4ea40b0a97e6d450a, type: 3}
   skillType: 3
   skill: 8

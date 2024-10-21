@@ -18,4 +18,14 @@ public static class EventDefine
     private static UnityEvent onEnemyDie = new();
     public static UnityEvent OnEnemyDie { get => onEnemyDie; }
 
+    public static UnityEvent<AbilitySO> onUnlockOnSwing = new UnityEvent<AbilitySO>();
+    public static UnityEvent OnLoseGame = new();
+    public static UnityEvent OnGameOver = new();
+    internal static UnityEvent OnWin = new();
 }
+// public static UnityEvent<AbilitySO> onUnlockOnSlashKill = new UnityEvent<AbilitySO>();
+
+// public static UnityEvent onTakeDamage = new();
+
+
+

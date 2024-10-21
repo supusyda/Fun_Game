@@ -89,7 +89,7 @@ public class Projectile : MonoBehaviour
     private float moveSpeed;
     private float maxMoveSpeed;
     private float trajectoryMaxRelativeHeight;
-    private float distanceToTargetToDestroyProjectile = .1f;
+    private float distanceToTargetToDestroyProjectile = .2f;
     protected bool _isReachTargetPos = false;
 
     private AnimationCurve trajectoryAnimationCurve;
@@ -113,8 +113,6 @@ public class Projectile : MonoBehaviour
     protected virtual void onHitTarget(Transform target)
     {
         if (target.GetComponentInChildren<DamageReciver>() == null) return;
-        DamageReciver damageReciver = target.GetComponentInChildren<DamageReciver>();//Get hit object DamageReciver
-        transform.GetComponentInChildren<DamageDealer>().onHittingEnemy(damageReciver);
         DestroyMe();
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -131,7 +129,7 @@ public class Projectile : MonoBehaviour
         if (_isReachTargetPos) return;
         UpdateProjectilePosition();
 
-        if (Vector3.Distance(transform.position, target) < distanceToTargetToDestroyProjectile)
+        if (Vector3.Distance(transform.position, target) <= distanceToTargetToDestroyProjectile)
         {
             OnReachTargetPos();
 
@@ -176,7 +174,7 @@ public class Projectile : MonoBehaviour
 
     private void UpdatePositionWithXCurve()
     {
-
+        if (trajectoryAnimationCurve == null) OnReachTargetPos();
         float nextPositionY = transform.position.y + moveSpeed * Time.deltaTime;
         float nextPositionYNormalized = (nextPositionY - trajectoryStartPoint.y) / trajectoryRange.y;
 

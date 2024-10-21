@@ -5,19 +5,19 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, IInvicible
 {
     // Start is called before the first frame update
+    [SerializeField] protected Transform SeeTargetIndicator;
+    public bool IsFacingRight { get; set; } = false;
+    public float speed { get; set; } = 1f;
+    public bool isArgo { get; set; }
+    public bool isInvicible { get; set; } = false;
+    public bool isAttackWithInLongRange { get; set; }
+    public bool isAttackWithInRange { get; set; }
     public Rigidbody2D RB { get; set; }
     public DangerZone dangerZone { get; private set; }
     public Collider2D enemyHitBox { get; set; }
     public Animator animator { get; set; }
-    public bool IsFacingRight { get; set; } = false;
-    public float speed { get; set; } = 1f;
-    public bool isArgo { get; set; }
-    public bool isAttackWithInRange { get; set; }
-    [SerializeField] protected Transform SeeTargetIndicator;
     public Transform target;
     public StateTxt stateTxt;
-    public bool isInvicible { get; set; } = false;
-    public bool isAttackWithInLongRange { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     [SerializeField] private int cost;
     public int Cost
@@ -129,8 +129,8 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     {
         moveDir = dir;
         // Debug.Log("" + moveDir);
-        Vector2 transVec2 = new Vector2(transform.position.x, transform.position.y);
-        RB.MovePosition(transVec2 + dir * (Time.deltaTime * speed));
+        Vector2 transformVec2 = new Vector2(transform.position.x, transform.position.y);
+        RB.MovePosition(transformVec2 + dir * (Time.deltaTime * speed));
         if (dir == Vector2.zero) return;
 
         CheckForFaceDir(dir);
@@ -142,6 +142,10 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
     public void SetTarget(Transform target)
     {
         this.target = target;
+    }
+    public bool HaveTarget()
+    {
+        return target != null;
     }
     #region AnimationTriggerEvent
     public void AnimationTrigger(AnimationTriggerEvent triggerEvent)
@@ -169,7 +173,7 @@ public class EnemyBase : MonoBehaviour, IMoveAle, ITriggerCheck, IHandleAttack, 
 
     }
 
-    public  void  setAttackWithInRange(bool isAttackWithInRange)
+    public void setAttackWithInRange(bool isAttackWithInRange)
     {
         this.isAttackWithInRange = isAttackWithInRange;
     }

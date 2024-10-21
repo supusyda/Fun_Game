@@ -10,8 +10,8 @@ public class Tooltip : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private TMP_Text headerField;
     [SerializeField] private TMP_Text contentField;
-    [SerializeField] private LayoutElement layoutElement;
-    [SerializeField] private int characterWrapLimit;
+    [SerializeField] protected LayoutElement layoutElement;
+    [SerializeField] protected int characterWrapLimit;
     [SerializeField] public RectTransform rectTransform;
     private void OnEnable()
     {
@@ -46,7 +46,7 @@ public class Tooltip : MonoBehaviour
 
 
     }
-    public void SetText(string content, string header)
+    public virtual void SetText(string content, string header)
     {
         if (string.IsNullOrEmpty(header))
         {

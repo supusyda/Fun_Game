@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: SlashProjectleAbility
   m_EditorClassIdentifier: 
   cooldown: 3
-  name: "\xE1dsad"
+  skillName: Fire Ball
+  content: Shoot a ball of fire in direction of mouse
+  skillPoint: 2
   sprite: {fileID: 21300000, guid: d215451093b88954991bf1c87a09c677, type: 3}
   skillType: 0
   skill: 1

@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad2969bbf04ef841b00a53f321d7289, type: 3}
   m_Name: Ally-Attack-Range
   m_EditorClassIdentifier: 
-  _isRangeAttack: 0
   attackCooldown: 1
-  attackCooldownTimer: 1

@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public float timeToMaxMovementSpeed = 1;
 
     [SerializeField] private float dashCDTimer = 0;
-   [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float moveSpeed = 1f;
 
 
     public bool IsFlip
@@ -109,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         actualMovementSpeed = math.clamp(Mathf.Lerp(actualMovementSpeed, moveSpeed, currentAccelerate / timeToMaxMovementSpeed), 0, moveSpeed);
         // Debug.Log(actualMovementSpeed);
         // float actualMovementSpeed = currentAccelerate
+        if (PlayerCtr.CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION) || PlayerCtr.CheckAnimationStateIsPlaying(PlayerDefine.PLAYER_ATTACK_ANIMATION_2)) return;
         rb.MovePosition(new Vector2(transform.position.x, transform.position.y) + moveDirection * (Time.deltaTime * actualMovementSpeed));
 
     }

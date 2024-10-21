@@ -15,9 +15,9 @@ public class Explosion : MonoBehaviour
     {
 
         Collider2D[] ojbInRange = Physics2D.OverlapCircleAll(transform.position, m_nExplosionRadius, layerMask);
+        AudioManager.Instance.PlayAudioAlly(AudioManager.Instance._EXPLOSIVE);
 
         if (ojbInRange.Length <= 0) return;
-
 
         foreach (Collider2D collider in ojbInRange)
         {
@@ -27,8 +27,6 @@ public class Explosion : MonoBehaviour
             //is the object has health
             if (health == null) continue;
             //if has do damage
-            Debug.Log(collider.gameObject.name);
-
             Vector2 knockBackVector = collider.transform.position - transform.position;
             health.TakeDamage(damage, knockBackVector.normalized * force);
         }

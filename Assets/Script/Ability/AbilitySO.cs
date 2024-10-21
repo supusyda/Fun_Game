@@ -5,9 +5,14 @@ using UnityEngine;
 public class AbilitySO : ScriptableObject
 {
   // Start is called before the first frame update
-  public float cooldown;
+  public float cooldown = 1;
 
-  public new string name;
+  public string skillName = "";
+  [TextAreaAttribute]
+  public string content = "";
+  [SerializeField] public int skillPoint = 1;
+
+
   public Sprite sprite;
   public SkillType skillType;
   public Skill skill;
@@ -15,7 +20,7 @@ public class AbilitySO : ScriptableObject
   AbilityHolder abilityHolder;
   public virtual void Init(Transform transform)
   {
-    
+
     abilityHolder = transform.GetComponent<AbilityHolder>();
 
 
@@ -55,9 +60,12 @@ public class AbilitySO : ScriptableObject
         }
       case SkillType.Turret:
         {
+
           BuildingTypeSelect.onUnlockBuilding.Invoke(skill);
+          BuildingManager.Instance.OnAddMaxBuilding(1);
           break;
         }
+
       default: break;
     }
   }

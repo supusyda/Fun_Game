@@ -26,7 +26,7 @@ public class PlayerCtr : MonoBehaviour, IClickAble
 
     public static Transform Trail { get => trail; }
     public static Shooter shooter;
-    [SerializeField] static public Level myLevel { get; private set; }
+    static public Level myLevel { get; set; }
     public static stat Stat = new(5, 10);
     public static DamageReciver myHealth;
     public static PlayerMovement movement;
@@ -66,10 +66,20 @@ public class PlayerCtr : MonoBehaviour, IClickAble
     private void OnEnable()
     {
         PlayerInput.Enable();
+        myLevel.OnLevelChange.AddListener(OnLevelUp);
     }
     private void OnDisable()
     {
         PlayerInput.Disable();
+        myLevel.OnLevelChange.RemoveListener(OnLevelUp);
+    }
+    void OnLevelUp()
+    {
+
+        Transform spawnParticle = ParticalSpawner.Instance.SpawnThing(transform.position, Quaternion.identity, ParticalSpawner.Instance.LEVELUP_PARTICLE);
+        spawnParticle.parent = transform;
+        spawnParticle.gameObject.SetActive(true);
+        AudioManager.Instance.PlayAudio(AudioManager.Instance._LEVELUP);
     }
     public static bool CheckAnimationStateIsPlaying(string State)
     {
@@ -106,6 +116,8 @@ public class PlayerCtr : MonoBehaviour, IClickAble
 
 
 
+
+
                 break;
             case PlayerState.GetHit:
                 PlayerMovement.LockMovementForTime(500);
@@ -134,5 +146,11 @@ public class PlayerCtr : MonoBehaviour, IClickAble
     {
         return modifiedAttackSpeed;
     }
-
+    // void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Z))
+    //     {
+    //         OnLevelUp();
+    //     }
+    // }
 }

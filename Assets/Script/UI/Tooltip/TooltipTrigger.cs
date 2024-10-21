@@ -9,7 +9,7 @@ public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public string content;
     public string header;
-    public void OnPointerEnter(PointerEventData eventData)
+    public virtual void OnPointerEnter(PointerEventData eventData)
     {
         // delay = LeanTween.delayedCall(0.3f, () =>
         //  {

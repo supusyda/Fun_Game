@@ -34,22 +34,21 @@ public class EnemyChasingSOChasingNormal : EnemyChasingSOBase
             return;
         }
 
-        Vector2 dir = (enemy.target.position - enemy.transform.position).normalized;
-        if (avoid)
-        {
-
-            dir = dir + (Vector2)avoid.GetAvoidDir();
-            // Debug.Log("(Vector2)avoid.GetAvoidDir()" + (Vector2)avoid.GetAvoidDir());
-
-        }
-
-
-        enemy.Move(dir.normalized);
 
     }
     public override void DoPhysicUpdate()
     {
         base.DoPhysicUpdate();
+        if (!enemy.HaveTarget()) return;
+        Vector2 dir = (enemy.target.position - enemy.transform.position).normalized;
+        if (avoid)
+        {
+            dir = dir + (Vector2)avoid.GetAvoidDir();
+        }
+
+
+        enemy.Move(dir.normalized);
+
     }
     public override void DoAnimationTriggerEvent(EnemyBase.AnimationTriggerEvent triggerEvent)
     {

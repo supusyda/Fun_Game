@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
   private void Start()
   {
     fade.FadeOut();
+    // AudioManager.Instance?.PlayBGMusic();
     // EnemySpawner.Instance.SpawnThing(Vector3.zero, Quaternion.identity, EnemySpawner.Instance.ENEMY).gameObject.SetActive(true);
     // EnemySpawner.Instance.SpawnThing(Vector3.zero, Quaternion.identity, EnemySpawner.Instance.ENEMY).gameObject.SetActive(true);
     // EnemySpawner.Instance.SpawnThing(Vector3.zero, Quaternion.identity, EnemySpawner.Instance.ENEMY).gameObject.SetActive(true);

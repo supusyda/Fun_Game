@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: UpStatAttackSpeed
   m_EditorClassIdentifier: 
   cooldown: 0
-  name: Attack Speed UP
-  sprite: {fileID: 21300000, guid: 9ea72647c24be493ba6f15a9cd2a24ae, type: 3}
+  skillName: Up Attack Speed
+  content: Greatly up attack speed
+  skillPoint: 0
+  sprite: {fileID: 21300000, guid: 7907606b0bd052a4192c3ddbd4aea963, type: 3}
   skillType: 2
   skill: 9
   UnlockCondition: 0

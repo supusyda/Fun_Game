@@ -5,31 +5,53 @@ using UnityEngine;
 public class TriggerArgo : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField] EnemyBase enemy;
-    Collider2D collider2D;
+    EnemyBase _enemy;
+    [SerializeField] List<Transform> targets = new();
+
     private void Awake()
     {
-        enemy = GetComponentInParent<EnemyBase>();
-        collider2D = GetComponent<Collider2D>();
+        _enemy = GetComponentInParent<EnemyBase>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Crew"))
+        if (CanInteract(other))
         {
-            enemy.setIsArgo(true);
-            enemy.target = other.transform;
+            _enemy.setIsArgo(true);
+            _enemy.target = other.transform;
+            targets.Add(other.transform);
             // collider2D.enabled = false;
         }
     }
+
+
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("Crew"))
+        if (CanInteract(other))
         {
 
-            enemy.setIsArgo(false);
+
+            targets.Remove(other.transform);
+
+
+            if (targets.Count > 0)
+            {
+                _enemy.SetTarget(targets[0]);
+            }
+            else
+            {
+                _enemy.SetTarget(null);
+                _enemy.setIsArgo(false);
+                targets.Clear();
+            }
             // enemy.target = null;
 
             // collider2D.enabled = true;
         }
+    }
+
+    bool CanInteract(Collider2D other)
+    {
+        return other.CompareTag(PlayerDefine.PLAYER_TAG) || other.CompareTag(PlayerDefine.CREW_TAG);
     }
 }

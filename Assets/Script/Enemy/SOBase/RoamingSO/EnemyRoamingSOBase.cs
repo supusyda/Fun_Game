@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyRoamingSOBase : ScriptableObject
 {
     protected EnemyBase enemy;
-    Transform transform;
+    protected Transform _transform;
     GameObject gameObject;
 
     public virtual void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
     {
         this.enemy = enemy;
-        this.transform = transform;
+        _transform = transform;
         this.gameObject = gameObject;
 
     }

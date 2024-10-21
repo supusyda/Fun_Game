@@ -8,6 +8,7 @@ TagManager:
   - DestroyAble
   - AllyDamageDealer
   - Crew
+  - Building
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - trigger
   - enemy
   - Player
-  - 
-  - 
+  - DamageDealer
+  - DamageRecivier
   - 
   - 
   - 

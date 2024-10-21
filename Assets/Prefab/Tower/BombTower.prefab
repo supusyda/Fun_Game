@@ -455,7 +455,7 @@ Transform:
   - {fileID: 8867027644606831604}
   - {fileID: 38296730052412484}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8536824163307901598
 CircleCollider2D:
@@ -605,6 +605,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 99ec5736e7e988c4c9d0b3f75f0fc730, type: 2}
+    - target: {fileID: 8090275229381961289, guid: 87d6557c10fb3d6429d30b5604e5093a, type: 3}
+      propertyPath: allyAttackSOBase
+      value: 
+      objectReference: {fileID: 11400000, guid: 15b25e6ca78c5ed4cadfb7b067acfe4b, type: 2}
     - target: {fileID: 8339227421040525666, guid: 87d6557c10fb3d6429d30b5604e5093a, type: 3}
       propertyPath: m_RootOrder
       value: -1

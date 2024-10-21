@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ArcherAnimationCtrl : MonoBehaviour
 {
-    // Start is called before the first frame update
+  // Start is called before the first frame update
   public void BeginShoot()
   {
     Shooter shooter = GetComponentInParent<Shooter>();
     shooter.BeginShoot();
+    AudioManager.Instance.PlayAudioAlly(AudioManager.Instance._BOW);
   }
 }

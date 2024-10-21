@@ -62,6 +62,8 @@ public class Shooter : MonoBehaviour
 
     public virtual void BeginShoot()
     {
+        if (target == null) return;
+        // Instantiate(projectilePrefab, target.position, Quaternion.identity)
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.SetActive(true);
         Projectile projectileS = projectile.GetComponent<Projectile>();

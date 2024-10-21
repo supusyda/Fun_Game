@@ -10,24 +10,30 @@ public class HeathBar : MonoBehaviour
     [SerializeField] private float _timeToDrain = 0.25f;
     public DamageReciver objectHealth;
     private float _target;
-    public Slider healthBar;
+
     public RectTransform holder;
     [SerializeField] public TMP_Text hpText;
-    private Image fillImage;
+    [SerializeField] private Image fillImage;
+    private Color originalColor;
+    void Awake()
+    {
+        originalColor = fillImage.color;
+    }
     private void OnEnable()
     {
 
-        healthBar = transform.GetComponent<Slider>();
-        fillImage = healthBar.fillRect.GetComponent<Image>();
+
         SetHPbarToMaxHP((int)objectHealth.maxHp);
+
+        fillImage.color = originalColor;
         // holder.gameObject.SetActive(false);
 
     }
 
     public void SetHPbarToMaxHP(int maxHP)
     {
-        healthBar.maxValue = maxHP;
-        healthBar.value = maxHP;
+        fillImage.fillAmount = 1;
+        // fillImage.value = maxHP;
         SetHPText(maxHP, maxHP);
 
 
@@ -40,11 +46,11 @@ public class HeathBar : MonoBehaviour
         while (elapedTime < _timeToDrain)
         {
             elapedTime += Time.deltaTime;
-            newValue = Mathf.Lerp(healthBar.value, _target, elapedTime / _timeToDrain);
-            healthBar.value = newValue;
+            newValue = Mathf.Lerp(fillImage.fillAmount, _target, elapedTime / _timeToDrain);
+            fillImage.fillAmount = newValue;
 
-            fillImage.color = Color.Lerp(fillImage.color, new Color(fillImage.color.r, (healthBar.value / healthBar.maxValue) - 0.1f, fillImage.color.b, 1), elapedTime / _timeToDrain);
-            SetHPText((int)newValue, (int)objectHealth.maxHp);
+            fillImage.color = Color.Lerp(fillImage.color, new Color(fillImage.color.r, (fillImage.fillAmount / fillImage.fillAmount) - 0.1f, fillImage.color.b, 1), elapedTime / _timeToDrain);
+            SetHPText((int)(newValue * objectHealth.maxHp), (int)objectHealth.maxHp);
             yield return null;
         }
     }
@@ -57,7 +63,7 @@ public class HeathBar : MonoBehaviour
             holder.gameObject.SetActive(true);
 
         };
-        _target = hp;
+        _target = hp / objectHealth.maxHp;
         StartCoroutine(DrainHealthBar());
     }
     void SetHPText(int hp, int maxHP)

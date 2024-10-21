@@ -5,11 +5,9 @@ using UnityEngine;
 public class AllyAttackSOBase : StateSOBase
 {
     // Start is called before the first frame update
-    AllyBase ally;
-    [SerializeField] bool _isRangeAttack;
-
+    protected AllyBase ally;
     public float attackCooldown = 1f;
-    public float attackCooldownTimer = 0f;
+    float attackCooldownTimer = 0f;
     public virtual void Init(AllyBase ally, Transform transform, GameObject gameObject)
     {
         this.ally = ally;
@@ -19,23 +17,24 @@ public class AllyAttackSOBase : StateSOBase
     }
     override public void DoEnterState()
     {
-
-        base.DoEnterState();
         ally.animator.Play("Attack");
-        // this.attackCooldownTimer = 0f;
+        this.attackCooldownTimer = 0f;
+        base.DoEnterState();
+
 
     }
     override public void DoExitState()
     {
         base.DoExitState();
+
     }
     override public void DoFrameUpdate()
     {
-        base.DoFrameUpdate();
-        if (ally.isAttackWithInLongRange != true && !CheckAnimationStateIsPlaying("Attack"))
-        {
-            ally.stateMachine.ChangeState(ally.allyIdleState); return;
-        };
+        // base.DoFrameUpdate();
+        // if (ally.isAttackWithInLongRange != true && !CheckAnimationStateIsPlaying("Attack"))
+        // {
+        //     ally.stateMachine.ChangeState(ally.allyIdleState); return;
+        // };
 
         if (!ally.isAttackWithInRange && !CheckAnimationStateIsPlaying("Attack"))
         {
@@ -44,11 +43,17 @@ public class AllyAttackSOBase : StateSOBase
             return;
         }
         this.attackCooldownTimer += Time.deltaTime;
-        if (this.attackCooldownTimer < this.attackCooldown) return;
-        ally.animator.Play("Attack");
-        this.attackCooldownTimer = 0f;
+        Debug.Log("attackCooldownTimer: " + this.attackCooldownTimer + " attackCooldown: " + this.attackCooldown);
+        Debug.Log("Attack");
+        if (this.attackCooldownTimer >= this.attackCooldown)
+        {
+            Debug.Log("Attack");
+            ally.animator.Play("Attack");
+            this.attackCooldownTimer = 0f;
+        }
 
     }
+
     override public void DoPhysicUpdate()
     {
         base.DoPhysicUpdate();

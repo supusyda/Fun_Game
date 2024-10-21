@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 4863343008649206854}
   - component: {fileID: 6155589601825615883}
   - component: {fileID: 7621216170241720139}
+  - component: {fileID: 5174271009409117430}
   - component: {fileID: 2127805102440067537}
   m_Layer: 0
   m_Name: Model
@@ -156,6 +157,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5174271009409117430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780644838054917331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6e565d9e397964f852e6edda26a29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2127805102440067537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +344,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cfa22dcdea90c7d46a5fd8fbd2ac8814, type: 2}
   - {fileID: 11400000, guid: 182cbd6694152a744942af1c3bf92470, type: 2}
   - {fileID: 11400000, guid: 06097fe3d7383714b919aa8b8eef3584, type: 2}
+  - {fileID: 11400000, guid: fc532535273f7d9438310561e0c08ba9, type: 2}
   _skillPointToUnlock: 0
 --- !u!1 &5292206454210303195
 GameObject:
@@ -346,7 +360,7 @@ GameObject:
   - component: {fileID: 2102106643036728428}
   - component: {fileID: 4179773539512505202}
   - component: {fileID: 5558712692611227870}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -464,6 +478,7 @@ MonoBehaviour:
   model: {fileID: 4863343008649206854}
   timeToMaxMovementSpeed: 10
   dashCDTimer: 0
+  moveSpeed: 1
 --- !u!114 &5558712692611227870
 MonoBehaviour:
   m_ObjectHideFlags: 0

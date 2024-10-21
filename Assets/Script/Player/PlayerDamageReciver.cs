@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerDamageReciver : DamageReciver
 {
     // Start is called before the first frame update
+    [SerializeField] SimpleFlash flash;
     protected override void hitAnim()
     {
         base.hitAnim();
@@ -18,9 +19,12 @@ public class PlayerDamageReciver : DamageReciver
         base.TakeDamage(damage, knockbackVecter);
         float magnitude = .5f;
         float durration = .5f;
-        TimeManager.Instance.SlowDownTime();
+        // TimeManager.Instance.SlowDownTime();
         PlayerCtr.ChangeAnimateState(PlayerCtr.PlayerState.GetHit);
         EventDefine.ShakeCamera?.Invoke(durration, magnitude);
+        flash.Flash();
+        AudioManager.Instance.PlayAudio(AudioManager.Instance._HURT_SFX);
+
 
     }
     protected override void hitParticle(Vector2 particleDir)
@@ -32,14 +36,14 @@ public class PlayerDamageReciver : DamageReciver
         particle.gameObject.SetActive(true);
         particle.rotation = Quaternion.Euler(0f, 0f, rot_z);
     }
-    protected override void Die(Action<string> callback = null)
+    protected override void Die()
     {
         // transform.parent.DoFa
         ParticalSpawner.Instance.SpawnThing(transform.position, Quaternion.identity, ParticalSpawner.Instance.DEATH_PARTICLE).gameObject.SetActive(true);
-
+        EventDefine.OnGameOver?.Invoke();
         transform.parent.Find("Model").GetComponent<SpriteRenderer>().DOFade(0, 1).onComplete += () =>
         {
-            transform.parent.Find("Model").GetComponent<SpriteRenderer>().DOFade(1, 0);
+            // transform.parent.Find("Model").GetComponent<SpriteRenderer>().DOFade(1, 0);
         };
     }
 }

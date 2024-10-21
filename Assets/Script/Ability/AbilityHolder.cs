@@ -8,7 +8,7 @@ public enum AbilityState
 }
 public enum Skill
 {
-  None, Slash, Summon, PlusHealth1, PlusHealth2, PlusSpeed1, PlusSpeed2, ArrowTower, TNTTower, PlusAttackSpeed1
+  None, BigFireBall, Summon, PlusHealth1, PlusHealth2, PlusSpeed1, PlusSpeed2, ArrowTower, TNTTower, PlusAttackSpeed1, SlashEffect1, PlusMaxTurret1, PlusMaxTurret2
 
 }
 public enum SkillType
@@ -29,6 +29,10 @@ public class AbilityHolder : MonoBehaviour
   private void Awake()
   {
     Init();
+  }
+  void OnDisable()
+  {
+    playerLevel?.OnLevelChange?.RemoveListener(OnLevelChange);
   }
   void Init()
   {
@@ -62,38 +66,22 @@ public class AbilityHolder : MonoBehaviour
   public void UnLockSkill(Ability skill)
   {
     if (IsUnlockSkill(skill)) return;//check skill í unlock
-    if (_skillPointToUnlock <= 0) return;//check skill is enough skill ponit
+    if (IsNotHaveEnoughSkillPoint(skill.skillPointNeed)) return;//check skill is enough skill ponit
     if (!IsFullyMeetUnlockCondition(skill.abilitySO)) return;
     skill.abilitySO.OnUnlock();
-    // switch (skill.abilitySO.skillType)//depend on skill type has diff way to handle
-    // {
-    //   case SkillType.Stat:
-    //     {
-    //       PlayerCtr.Stat.AddStatByAbility(skill.abilitySO);
-    //       break;
-    //     }
-    //   case SkillType.Active:
-    //     {
-    //       unlockedActiveSkill.Add(skill);                       // fire event to UI to show unlock skill on screen
-    //       break;
-    //     }
-    //   case SkillType.Turret:
-    //     {
-    //       BuildingTypeSelect.onUnlockBuilding.Invoke(skill.abilitySO.skill);
-    //       break;
-    //     }
-    //   default: break;
-    // }
-
     unLockSkill.Add(skill);// add skill to unlock skill list 
     EventDefine.onAbilityInit2?.Invoke(skill);
-    _skillPointToUnlock--;// minus skill point
+    OnUsingSkillPoint(skill.skillPointNeed);// minus skill point
   }
 
   bool IsFullyMeetUnlockCondition(AbilitySO abilitySO)
   {
     if (abilitySO.UnlockCondition == Skill.None) return true;//if dont have condition
     return unLockSkill.Contains(GetSkill(abilitySO.UnlockCondition));// is the skill need to unlock has been unlock
+  }
+  bool IsNotHaveEnoughSkillPoint(int skillPoint)
+  {
+    return _skillPointToUnlock <= 0 || _skillPointToUnlock < skillPoint;
   }
   void UsingSkill()
   {
@@ -129,10 +117,21 @@ public class AbilityHolder : MonoBehaviour
   void SetUpLevelPlayer()
   {
     playerLevel = PlayerCtr.myLevel;
-    playerLevel.OnLevelChange.AddListener(() =>
-    {
-      _skillPointToUnlock++;
-    });
+    playerLevel.OnLevelChange.AddListener(OnLevelChange);
+  }
+  void OnLevelChange()
+  {
+    _skillPointToUnlock++;
+    SkillPointUIText.onSkillPointChange.Invoke((int)_skillPointToUnlock);
+  }
+  void OnUsingSkillPoint(int amount)
+  {
+    _skillPointToUnlock -= amount;
+    SkillPointUIText.onSkillPointChange.Invoke((int)_skillPointToUnlock);
+  }
+  public float GetSkillPointToUnlock()
+  {
+    return _skillPointToUnlock;
   }
   public void AddSkillToActiveSkill(Skill skill)
   {

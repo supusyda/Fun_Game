@@ -16,13 +16,12 @@ public class ActiveSkillHolder : MonoBehaviour
     {
         // EventDefine.onAbilityInit.AddListener(InitActiveSkillUI);
         EventDefine.onAbilityInit2.AddListener(InitUnlockActiveSkillUI);
-
         EventDefine.onAbilityUse.AddListener(SetSkillInCoolDown);
 
     }
     private void OnDisable()
     {
-        EventDefine.onAbilityInit.RemoveListener(InitActiveSkillUI);
+        // EventDefine.onAbilityInit.RemoveListener(InitActiveSkillUI);
         EventDefine.onAbilityInit2.RemoveListener(InitUnlockActiveSkillUI);
 
     }
@@ -59,13 +58,10 @@ public class ActiveSkillHolder : MonoBehaviour
     {
         //get the gameOjb from dic with abilitySO is the key 
         abilityStateDic[abilitySO].Find("Cooldown").GetComponent<Image>().fillAmount = 1;
-
         float fillAmount = abilitySO.cooldown;
         yield return null;
         while (fillAmount > 0)
         {
-
-
             fillAmount -= Time.deltaTime;
             a = fillAmount;
             float percent = fillAmount / abilitySO.cooldown;

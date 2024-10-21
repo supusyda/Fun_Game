@@ -7,7 +7,7 @@ public class DamageDealer : MonoBehaviour
 {
 
     public float damage = 1;
-    public float knockBackForce;
+    public float knockBackForce = 1;
     protected DamageReciver targetHit;
     public Collider2D hitBox;
     private void Awake()
@@ -19,7 +19,7 @@ public class DamageDealer : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        
+
         onHittingEnemy(other.GetComponentInChildren<DamageReciver>());
     }
     public virtual void onHittingEnemy(DamageReciver enemy)

@@ -9,7 +9,7 @@ public class PlayerAnimationEmitEvent : MonoBehaviour
 
     static UnityEvent onStartSwing;
     static UnityEvent onEndSwing;
-    
+
 
     public static UnityEvent OnStartSwing { get => onStartSwing; }
     public static UnityEvent OnEndSwing { get => onEndSwing; }
@@ -31,12 +31,5 @@ public class PlayerAnimationEmitEvent : MonoBehaviour
         onEndSwing.Invoke();
     }
     // this func is call in animation event
-    public void SpawnSlash()
-    {
-        
-        var offSetSpawnPosX = .59f;
-        Transform spawnOjb = ProjectileSpawner.Instance.SpawnThing(transform.position + new Vector3(offSetSpawnPosX * (PlayerCtr.movement.IsFlip == true ? -1 : 1), 0, 0), transform.rotation, ProjectileSpawner.Instance.SLASH_EFFECT);
 
-        spawnOjb.gameObject.SetActive(true);
-    }
 }

@@ -8,6 +8,8 @@ public class ParticalSpawner : Spawn
     public string HIT_PARTICLE = "HitParticle";
     public string DEATH_PARTICLE = "DeathParticle";
     public string DUST_TRAIL_PARTICLE = "DustTrailParticle";
+    public string LEVELUP_PARTICLE = "LevelUpPartical";
+
 
     private ParticalSpawner instance;
     static public ParticalSpawner Instance;

@@ -6,17 +6,26 @@ using UnityEngine;
 public class Ability
 {
     // Start is called before the first frame update
-    
+
     public AbilitySO abilitySO;
-    float timeCooldown;
-    float timeCooldownRemaining;
+    Sprite sprite;
+    public float timeCooldown { get; private set; }
+    public int skillPointNeed { get; private set; }
+
+    private float timeCooldownRemaining { get; set; }
+    public string headerName { get; private set; }
+    public string content { get; private set; }
+
     AbilityState abilityState;
     public Ability(AbilitySO abilitySO, AbilityState abilityState, Transform transform)
     {
         this.abilitySO = abilitySO;
         this.abilitySO.Init(transform);
         timeCooldown = abilitySO.cooldown;
+        headerName = abilitySO.skillName;
+        content = abilitySO.content;
         this.abilityState = abilityState;
+        skillPointNeed = abilitySO.skillPoint;
     }
     public void OnBegin()
     {
@@ -35,10 +44,7 @@ public class Ability
     public void OnUpdate()
     {
         this.abilitySO.Update();
-
-
     }
-
     public void UpdateCooldown()
     {
         if (abilityState != AbilityState.cooldown) return;

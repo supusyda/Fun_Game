@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7df707e19ad8247a706a07a97a3a9b, type: 3}
   m_Name: SummonCrewAbility
   m_EditorClassIdentifier: 
-  cooldown: 1
-  name: aa
+  cooldown: 3
+  skillName: Summon Crew
+  content: Summon a fellow crew to fight by your side
+  skillPoint: 2
   sprite: {fileID: 21300000, guid: d8e6c03f10f34ba4cb67595174ebd6a6, type: 3}
   skillType: 0
   skill: 2
   UnlockCondition: 0
   prefab: {fileID: 0}
+  crewSumAmount: 3

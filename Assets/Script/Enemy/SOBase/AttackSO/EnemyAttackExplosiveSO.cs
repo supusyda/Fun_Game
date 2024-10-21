@@ -12,7 +12,7 @@ public class EnemyAttackExplosiveSO : EnemyAttackSOBase
     [SerializeField] private float froce;
 
 
-    override public async void DoEnterState()
+    override public void DoEnterState()
     {
         base.DoEnterState();
         enemy.animator.Play(m_animationName);
@@ -44,7 +44,7 @@ public class EnemyAttackExplosiveSO : EnemyAttackSOBase
 
                 foreach (Collider2D collider in ojbInRange)
                 {
-                    
+
                     DamageReciver health = collider.GetComponentInChildren<DamageReciver>();
                     //is player and crew ? if not return
                     if (!collider.CompareTag("Player") && !collider.CompareTag("Crew")) continue;

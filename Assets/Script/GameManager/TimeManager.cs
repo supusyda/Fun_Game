@@ -14,7 +14,7 @@ public class TimeManager : MonoBehaviourSingleton<TimeManager>
 
     public static UnityEvent OnMinuteChange = new UnityEvent();
     public static UnityEvent OnHoursChange = new UnityEvent();
-    public float minuteToRealTime = 0.01f;
+    public float minuteToRealTime = 0.02f;
     [SerializeField] float timer = 0;
     [SerializeField] public static float Hours { get; private set; }
     [SerializeField] public static float Minute { get; private set; }

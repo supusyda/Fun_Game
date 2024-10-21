@@ -5,9 +5,8 @@ using UnityEngine;
 public class SummonCrewAbilitySO : AbilitySO
 {
     // Start is called before the first frame update
-    Transform transform;
-    GameObject gameObject;
     public Transform prefab;
+    public int crewSumAmount = 1;
     public override void Use(Transform transform)
     {
 
@@ -15,8 +14,11 @@ public class SummonCrewAbilitySO : AbilitySO
     }
     public override void OnBegin()
     {
+        for (int i = 0; i < crewSumAmount; i++)
+        {
 
-        CrewSpawner.Instance.SpawnCrewAroundPlayer();
+            CrewSpawner.Instance.SpawnCrewAroundPlayer();
+        }
 
     }
     public override void Update()

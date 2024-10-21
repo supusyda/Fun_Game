@@ -15,17 +15,17 @@ public class FadeInThenOut : MonoBehaviour
     {
         rectTransform = transform.GetComponent<RectTransform>();
         startPos = rectTransform.anchoredPosition;
-        
         FadeIn();
     }
     void FadeIn()
     {
-        
+
         rectTransform.localScale = Vector3.zero;
         rectTransform.anchoredPosition = new Vector3(0, -100, 0);
         rectTransform.DOAnchorPos(startPos, timefade).SetEase(Ease.OutElastic);
         rectTransform.DOScale(new Vector3(1, 1, 1), timefade).onComplete += () =>
         {
+            if (gameObject.activeInHierarchy == false) return;
             StartCoroutine(FadeOut());
         };
 

@@ -10,7 +10,7 @@ public class DamageReciver : MonoBehaviour
     // Start is called before the first frame update
 
     Rigidbody2D rigidbody2D;
-    [SerializeField] Collider2D collider2D;//hurt box
+    [SerializeField] protected Collider2D collider2D;//hurt box
     [SerializeField] HeathBar healthBar;
     [SerializeField] public float hp;
     protected Vector2 knockBackVector;
@@ -55,7 +55,7 @@ public class DamageReciver : MonoBehaviour
     {
         this.Hp = this.maxHp;
         this.IsAlive = true;
-        // collider2D.enabled = true;
+        collider2D.enabled = true;
     }
     protected virtual async void KnockBack(Vector2 knockbackVecter)
     {
@@ -66,8 +66,8 @@ public class DamageReciver : MonoBehaviour
         rigidbody2D.AddForce(knockbackVecter, ForceMode2D.Impulse);
         await Task.Delay(1000);//reset velocity after 1sec
         if (!rigidbody2D) return;
-
         rigidbody2D.velocity = Vector2.zero;
+        rigidbody2D.angularVelocity = 0;
     }
     public virtual void TakeDamage(float damage, Vector2 knockbackVecter)
     {
@@ -111,7 +111,7 @@ public class DamageReciver : MonoBehaviour
     public void SetMaxHP(float maxHP)
     {
         this.maxHp = maxHP;
-        Debug.Log("maxHP" + maxHP);
+
         healthBar.SetHPbarToMaxHP((int)maxHP);
 
     }

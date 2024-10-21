@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2e48a8ea42a514d8d9e51d3abd184e, type: 3}
   m_Name: Snake-Chasing-Normal
   m_EditorClassIdentifier: 
-  chasingSpeed: 7
+  chasingSpeed: 4

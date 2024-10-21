@@ -6,14 +6,17 @@ using UnityEngine;
 
 public class EnemyDamageReciver : DamageReciver
 {
-    Transform player;
+    protected Transform player;
     EnemyBase enemy;
-    [SerializeField] SpriteRenderer spriteRenderer;
+    SimpleFlash simpleFlash;
+
+    [SerializeField] protected SpriteRenderer spriteRenderer;
     protected override void Awake()
     {
         base.Awake();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         enemy = GetComponentInParent<EnemyBase>();
+        simpleFlash = transform.parent.GetComponentInChildren<SimpleFlash>();
 
     }
     protected override void hitAnim()
@@ -27,6 +30,9 @@ public class EnemyDamageReciver : DamageReciver
         enemy.enemyStateMachine.ChangeState(enemy.enemyDamageState);
 
         base.TakeDamage(damage, knockbackVecter);
+        simpleFlash?.Flash();
+        collider2D = GetComponentInParent<Collider2D>();
+        // EventDefine.onTakeDamage.Invoke();
     }
     void hitParticle()
     {
@@ -42,19 +48,18 @@ public class EnemyDamageReciver : DamageReciver
     protected override void Die()
     {
         // transform.parent.DoFa
-        Collider2D collider2D = GetComponentInParent<Collider2D>();
-        collider2D.enabled = false;
 
         ParticalSpawner.Instance.SpawnThing(transform.position, Quaternion.identity, ParticalSpawner.Instance.DEATH_PARTICLE).gameObject.SetActive(true);
         enemy.OnDie();
         this.spriteRenderer.DOFade(0, 1).onComplete += () =>
         {
             //find if there is drop 
+            transform.parent.Find("Model").GetComponent<SpriteRenderer>().DOFade(1, 0);
             DropThing drop = transform.parent.GetComponentInChildren<DropThing>();
+            if (drop) drop.Drop();//if has drop then do drop
             EnemySpawner.Instance.DespawnOjb(transform.parent);
             EventDefine.OnEnemyDie.Invoke();
 
-            if (drop) drop.Drop();//if has then do drop
         };
     }
 }

@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: HPUpStat
   m_EditorClassIdentifier: 
   cooldown: 0
-  name: vvv
-  sprite: {fileID: 21300000, guid: 7073ab83a649eb04b95ce0d48ce2d2ae, type: 3}
+  skillName: Plus health 1
+  content: Raise Up Stat
+  skillPoint: 2
+  sprite: {fileID: 21300000, guid: d7f69aebe89a0df41a8776ef5d0b8d3f, type: 3}
   skillType: 2
   skill: 3
-  UnlockCondition: 1
+  UnlockCondition: 0
   additinalAmout: 10
   statType: 0
   prefab: {fileID: 0}

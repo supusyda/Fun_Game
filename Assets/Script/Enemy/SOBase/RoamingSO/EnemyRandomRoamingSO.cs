@@ -8,13 +8,16 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     // Start is called before the first frame update
     [SerializeField] public float maxRoamingRange = 5f;
     [SerializeField] public Vector3 startedPos;
-    private Vector3 targetPosition;
-    private Vector3 randDir;
+    [SerializeField] private float timeChangeRoamingPos = 4f;
+    [SerializeField] private float changeRoamingPosTimer;
+    private Vector2 targetPosition;
+    private Vector2 randDir;
     private float speed = 1f;
-
+    Avoid avoid;
     override public void Init(EnemyBase enemy, Transform transform, GameObject gameObject)
     {
         base.Init(enemy, transform, gameObject);
+
     }
     override public void DoEnterState()
     {
@@ -24,6 +27,8 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
         enemy.animator.Play("Run");
         InitRandRoaming();
         enemy.SetSpeed(speed);
+        avoid = _transform.GetComponentInChildren<Avoid>();
+        changeRoamingPosTimer = 0;
 
     }
     override public void DoExitState()
@@ -32,9 +37,9 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     }
     override public void DoFrameUpdate()
     {
-        base.DoFrameUpdate();
-        Roaming();
         if (enemy.isArgo == true) enemy.enemyStateMachine.ChangeState(enemy.enemyChasingState);
+        base.DoFrameUpdate();
+        UpdateRoaming();
     }
     override public void DoPhysicUpdate()
     {
@@ -48,42 +53,58 @@ public class EnemyRandomRoamingSO : EnemyRoamingSOBase
     {
         base.ResetValue();
     }
-    private void Roaming()
+    private void UpdateRoaming()
     {
+        Vector2 dir = randDir;
+        if (avoid) dir = dir + (Vector2)avoid.GetAvoidDir();
+
         enemy.Move(randDir);
-        if (Vector3.Distance(enemy.transform.position, targetPosition) <= 1f)
+
+        if (canChangeRoamingPos())
         {
             // reach rand roaming pos 
             //if this object reach the randPos or move pass the maxRoamingRange then
             //cal rand roaming pos again
             InitRandRoaming();
+            changeRoamingPosTimer = 0;
         }
-        // else if(Vector3.Distance(enemy.transform.position, startedPos) >= maxRoamingRange)
-        // {
+        else
+        {
+            changeRoamingPosTimer += Time.deltaTime;
+        }
 
-        // }
     }
-    Vector3 GetRoamingPosition()
+    Vector3 GetRoamingPositionNearStartPos()
     {
         // get rand roaming pos reletive to the started pos of the oject
         float rand = UnityEngine.Random.Range(1f, maxRoamingRange);
-        Vector3 vector3 = startedPos + GetRandomDirection() * rand;
-        return vector3;
-    }
-    Vector3 GetRandomDirection()
-    {
-        return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f), 0).normalized;
+        // Vector3 vector3 = startedPos + GetRandomDirection() * rand;
+        Vector3 point = (Random.insideUnitSphere * maxRoamingRange) + startedPos;
+        return point;
     }
     void InitRandRoaming()
     {
-        targetPosition = GetRoamingPosition();
-        // Debug.Log("targetPosition" + targetPosition);
-        if (targetPosition == null) return;
-        randDir = (targetPosition - enemy.transform.position).normalized;
+        targetPosition = RandomPositionGen.GenRandPosWithInSphere(maxRoamingRange, startedPos);
+        randDir = (targetPosition - (Vector2)enemy.transform.position);
+        randDir.Normalize();
 
+    }
+    private bool canChangeRoamingPos()
+    {
+        return Vector3.Distance(enemy.transform.position, targetPosition) <= .1f || changeRoamingPosTimer >= timeChangeRoamingPos;
     }
     public override void OnDrawGrizmos()
     {
         base.OnDrawGrizmos();
+    }
+}
+public class RandomPositionGen
+{
+    public static Vector3 GenRandPosWithInSphere(float maxRoamingRange, Vector3 startedPos)
+    {
+        float rand = UnityEngine.Random.Range(1f, maxRoamingRange);
+        // Vector3 vector3 = startedPos + GetRandomDirection() * rand;
+        Vector3 point = (Random.insideUnitSphere * maxRoamingRange) + startedPos;
+        return point;
     }
 }

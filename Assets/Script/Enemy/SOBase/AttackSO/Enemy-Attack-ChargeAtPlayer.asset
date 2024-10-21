@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f2ede0450fd3bd46a48c6328d0d944c, type: 3}
   m_Name: Enemy-Attack-ChargeAtPlayer
   m_EditorClassIdentifier: 
-  chargeTime: 1
-  force: 2
+  chargeTime: 0.5
+  cooldownTime: 1
+  force: 10

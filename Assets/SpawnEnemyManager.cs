@@ -15,7 +15,7 @@ public class SpawnEnemyManager : MonoBehaviour
   [SerializeField] private Transform spawnPosHolder;
   [SerializeField] private List<WaveDataSO> waveDataSOs = new List<WaveDataSO>();
   private List<Transform> spawnLocation = new List<Transform>();
-  private int _currentWaveIndex = 0;
+  [SerializeField] private int _currentWaveIndex = 0;
 
 
 
@@ -97,7 +97,7 @@ public class SpawnEnemyManager : MonoBehaviour
     SetCurrentEnemyCount(listOfEnemies.Count);
     foreach (Transform enemy in listOfEnemies)
     {
-      
+
       Transform spawnEnemy = EnemySpawner.Instance.SpawnThing(RandomCircle(transform.position, 6f), Quaternion.identity, enemy.name);
       spawnEnemy.gameObject.SetActive(true);
     }
@@ -116,10 +116,17 @@ public class SpawnEnemyManager : MonoBehaviour
     int retryTime = 5;// need inovation
     waveValue = currency;
     int newCurrency = currency;// wave value get from SO
+    int enemyCost = 0;
     while (true)
     {
       int randEnemyIndex = Random.Range(0, currentWayDataPrefab.Count);//get rand enemy
-      int enemyCost = currentWayDataPrefab[randEnemyIndex].GetComponent<EnemyBase>().Cost;//get enemy  cost
+      if (currentWayDataPrefab[randEnemyIndex].name == "EaterOfWorld")
+      {
+        enemyCost = currentWayDataPrefab[randEnemyIndex].GetComponentInChildren<EnemyBase>().Cost;
+
+      }
+      else
+        enemyCost = currentWayDataPrefab[randEnemyIndex].GetComponent<EnemyBase>().Cost;//get enemy  cost
       // newCurrency -= enemyCost;
       int afterCostCurrency = newCurrency - enemyCost; //current curency after - the enemy cost
       if (afterCostCurrency >= 0) //enemy fullied the codition 
@@ -141,10 +148,6 @@ public class SpawnEnemyManager : MonoBehaviour
 
       if (currentWayDataPrefab.Count > 0 && retryTime > 0) //enemy not fullfied 
       {
-        // Debug.Log("SECOND");
-        // Debug.Log("randEnemyIndex" + randEnemyIndex);
-        // Debug.Log("newCurrency" + newCurrency);
-        // Debug.Log("enemyCost" + enemyCost);
         currentWayDataPrefab.RemoveAt(randEnemyIndex);
         retryTime--;
         if (currentWayDataPrefab.Count <= 0) break;// if dont have anymore enemy that suitable return
